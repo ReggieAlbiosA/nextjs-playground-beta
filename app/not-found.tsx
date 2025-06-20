@@ -18,7 +18,8 @@ export default function NotFound() {
             404 - Not Found
           </h1>
           <p className="max-w-md text-muted-foreground">
-            Sorry, we couldn't find the page you were looking for. It might have been moved or deleted.
+            {/* The apostrophe in "couldn't" is replaced with &apos; to fix the error */}
+            Sorry, we couldn&apos;t find the page you were looking for. It might have been moved or deleted.
           </p>
         </div>
       </div>

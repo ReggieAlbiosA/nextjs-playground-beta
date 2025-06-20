@@ -64,7 +64,7 @@ export function ThemeSwitcher({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative !z-200"  ref={dropdownRef}>
       <Button
         variant="ghost"
         size="icon"
@@ -81,8 +81,8 @@ export function ThemeSwitcher({ children }: { children: React.ReactNode }) {
       </Button>
 
       {isOpen && (
-        <div className="absolute right-0 z-[200] w-34 mt-2 primary-bg border rounded-md shadow-lg ">
-          <div className="flex flex-col p-1 gap-y-1">
+        <div className="absolute right-0 !z-200  w-34 mt-2 primary-bg border rounded-md shadow-lg ">
+          <div className="flex flex-col p-1 gap-y-1 ">
             <button
               onClick={() => handleThemeSelect("light")}
               className={`w-full text-left px-2 py-1 rounded cursor-pointer hover:bg-zinc-500/20 transition-colors ${theme === "light" ? "bg-zinc-500/20" : ""}`}

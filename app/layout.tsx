@@ -13,7 +13,7 @@ import { BookText, Github, Moon, Sun } from "lucide-react";
 
 // * client components
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
-import { MobileMenu } from "./components/MobileMenu";
+import { ConditionalMobileMenu } from "./components/ConditionalMobileMenu";
 
 
 const geistSans = Geist({
@@ -114,7 +114,7 @@ export default async function RootLayout({
           disableTransitionOnChange
           storageKey="app-theme"
         >
-          <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <header className="sticky top-0  w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
              {/* ... your header code ... */}
              <div className="flex items-center justify-between h-16 px-4 mx-auto sm:px-6 lg:px-8">
                <Link href="/" className="text-lg font-bold" aria-label="Next.js Playground Home">
@@ -142,7 +142,9 @@ export default async function RootLayout({
                      <div className="grid place-items-center w-full h-full"><Sun size={16} /></div>
                    )}
                  </ThemeSwitcher>
-                 <MobileMenu />
+                 
+                 {/* Use conditional mobile menu instead of MobileMenu directly */}
+                 <ConditionalMobileMenu />
                </div>
              </div>
           </header>
