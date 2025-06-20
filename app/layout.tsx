@@ -10,7 +10,11 @@ import { headers, cookies } from 'next/headers';
 // * dependencies
 import { ThemeProvider } from "next-themes";
 import { BookText, Github, Moon, Sun } from "lucide-react";
+
+// * client components
 import { ThemeSwitcher } from "./components/ThemeSwitcher";
+import { MobileMenu } from "./components/MobileMenu";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -138,6 +142,7 @@ export default async function RootLayout({
                      <div className="grid place-items-center w-full h-full"><Sun size={16} /></div>
                    )}
                  </ThemeSwitcher>
+                 <MobileMenu />
                </div>
              </div>
           </header>

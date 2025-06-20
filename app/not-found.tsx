@@ -1,0 +1,32 @@
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { SearchX } from 'lucide-react'
+
+export default function NotFound() {
+  return (
+    // This container centers the content vertically in the space below your sticky header.
+    // h-16 (4rem) is the height of your header.
+    <div className="flex min-h-[calc(100vh-5rem)] w-full flex-col items-center justify-center space-y-8 p-8 text-center">
+      
+      <div className="flex flex-col items-center space-y-4">
+        <SearchX
+          className="h-20 w-20 text-muted-foreground"
+          aria-hidden="true"
+        />
+        <div className="space-y-2">
+          <h1 className="text-4xl font-bold tracking-tight text-foreground">
+            404 - Not Found
+          </h1>
+          <p className="max-w-md text-muted-foreground">
+            Sorry, we couldn't find the page you were looking for. It might have been moved or deleted.
+          </p>
+        </div>
+      </div>
+
+      <Button asChild>
+        <Link href="/">Return Home</Link>
+      </Button>
+
+    </div>
+  )
+}
