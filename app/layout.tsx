@@ -12,8 +12,8 @@ import { ThemeProvider } from "next-themes";
 import { BookText, Github, Moon, Sun } from "lucide-react";
 
 // * client components
-import { ThemeSwitcher } from "./components/ThemeSwitcher";
-import { ConditionalMobileMenu } from "./components/ConditionalMobileMenu";
+import { ThemeSwitcher } from "./client-components/ThemeSwitcher";
+import { ConditionalMobileMenu } from "./client-components/ConditionalMobileMenu";
 
 
 const geistSans = Geist({
@@ -126,7 +126,7 @@ export default async function RootLayout({
                </Link>
 
                <div className="flex items-center gap-2">
-                 <nav className="items-center hidden gap-3 sm:flex" aria-label="Primary">
+                 <nav className="items-center hidden gap-3 md:flex" aria-label="Primary">
                    <Link href="/">xlore_</Link>
                    <div className="w-px h-6 border-l border-border" aria-hidden="true" />
                    <Link href="/docs" className="flex items-center gap-1.5 text-sm transition-colors hover:text-foreground/80 px-2 py-1.5 rounded-md"><BookText size={16} /><span>Docs</span></Link>
