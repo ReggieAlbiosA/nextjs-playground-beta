@@ -145,8 +145,6 @@
       --scrollbar-border: oklch(1 0 0 / 10%);
     }
     
-    
-
     * {
       @apply border-border outline-ring/50;
     }

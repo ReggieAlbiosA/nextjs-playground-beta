@@ -13,8 +13,7 @@ import { BookText, Github, Moon, Sun } from "lucide-react";
 
 // * client components
 import { ThemeSwitcher } from "./client-components/ThemeSwitcher";
-import { ConditionalMobileMenu } from "./client-components/ConditionalMobileMenu";
-
+import { ConditionalMobileMenu, ConditionalDocsSearch } from "./client-components/ConditionalMobileMenu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -116,8 +115,8 @@ export default async function RootLayout({
         >
           <header className="sticky top-0  w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
              {/* ... your header code ... */}
-             <div className="flex items-center justify-between h-16 px-4 mx-auto sm:px-6 lg:px-8">
-               <Link href="/" className="text-lg font-bold" aria-label="Next.js Playground Home">
+             <div className="flex items-center justify-between h-16  px-4 mx-auto sm:px-6 lg:px-8">
+               <Link href="/" className="text-lg font-bold " aria-label="Next.js Playground Home">
                  <span className="flex items-center gap-x-2">
                    <svg version="1.0" className="dark:fill-white fill-black" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 256 256" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><g transform="translate(0,256) scale(0.1,-0.1)" stroke="none"><path d="M1556 2374c-16-9-266-191-555-404-355-262-532-399-546-422-18-30-20-54-23-310-2-153 0-278 5-278 4 0 201 144 436 320 467 349 467 349 518 294 24-25 24-26 27-280l3-254-25-25c-45-45-77-35-206 60-63 47-121 85-129 85-8 0-90-57-182-126-167-125-169-127-169-164 0-52 12-81 50-118 29-29 408-325 488-381 40-28 98-37 143-22 54 18 468 339 504 389l30 44 3 690c3 812 14 735-121 835-46 34-96 67-111 73-39 15-106 12-140-6z"/></g></svg>
                    <span className="text-[1.2rem] font-bold">Next.js</span>
@@ -125,7 +124,7 @@ export default async function RootLayout({
                  </span>
                </Link>
 
-               <div className="flex items-center gap-2">
+               <div className="flex items-center gap-2 ">
                  <nav className="items-center hidden gap-3 md:flex" aria-label="Primary">
                    <Link href="/">xlore_</Link>
                    <div className="w-px h-6 border-l border-border" aria-hidden="true" />
@@ -135,13 +134,17 @@ export default async function RootLayout({
                    <div className="w-px h-6 border-l border-border" aria-hidden="true" />
                  </nav>
 
+                 <ConditionalDocsSearch /> {/* Moved DocSearch here */}
+
                  <ThemeSwitcher>
+                   {/* Placeholder for ThemeSwitcher icon */}
                    {initialTheme === "dark" ? (
                      <div className="grid place-items-center w-full h-full"><Moon size={16} /></div>
                    ) : (
                      <div className="grid place-items-center w-full h-full"><Sun size={16} /></div>
                    )}
                  </ThemeSwitcher>
+
                  
                  {/* Use conditional mobile menu instead of MobileMenu directly */}
                  <ConditionalMobileMenu />

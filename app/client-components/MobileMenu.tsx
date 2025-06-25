@@ -11,6 +11,7 @@ export function MobileMenu() {
   // menuRef is no longer needed for outside click detection, but can be kept for other purposes if needed.
   const menuRef = useRef<HTMLDivElement>(null);
 
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -20,16 +21,22 @@ export function MobileMenu() {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
 
+
+
   return (
-    <div className="sm:hidden" ref={menuRef}>
+    <div ref={menuRef} className="flex">
+
       <Button
         variant="ghost"
         size="icon"
         onClick={toggleMenu}
+        className="md:hidden"
         aria-label="Open navigation menu"
       >
         {isOpen ? <X size={20} /> : <Menu size={20} />}
       </Button>
+
+      
 
       {isOpen && (
         <div className="absolute overflow-y-auto h-[calc(100vh-64px)] top-16 inset-x-0 z-50 bg-background border-b">

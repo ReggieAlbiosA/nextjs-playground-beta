@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { BookText, Github, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DocSearch } from "@/app/client-components/DocSearch";
 
 interface MobileDocsSidebarProps {
   children: React.ReactNode;
@@ -23,14 +24,18 @@ export function MobileDocsSidebar({ children }: MobileDocsSidebarProps) {
 
   return (
     <div className="md:hidden !m-0">
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={toggleMenu}
-        aria-label="Open navigation menu"
-      >
-        <Menu size={20} />
-      </Button>
+      <div className="flex gap-x-6 px-3">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={toggleMenu}
+          aria-label="Open navigation menu"
+        >
+          <Menu size={20} />
+        </Button>
+
+        <DocSearch className="w-60"/> {/* Moved DocSearch here */}
+      </div>
 
       {isOpen && (
         <>
