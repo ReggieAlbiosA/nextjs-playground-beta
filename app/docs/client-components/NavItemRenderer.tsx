@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, ChevronRight, type LucideIcon } from "lucide-react";
@@ -25,50 +25,64 @@ export function NavItemRenderer({ item, level = 0, onLinkClick }: NavItemRendere
   const isActive = pathname === item.url;
   
   const [isExpanded, setIsExpanded] = useState(isParentActive);
+  const userAction = useRef(false);
+
+  // This effect handles two cases:
+  // 1. On initial load, it sets the expanded state based on the active path.
+  // 2. On browser navigation (back/forward), it ensures the relevant parent section expands.
+  // It is designed to NOT run when the user manually toggles a section, preventing it from
+  // overriding the user's action.
+  useEffect(() => {
+    // If the state was changed by a user click, do nothing.
+    if (userAction.current) {
+      userAction.current = false; // Reset for next navigation
+      return;
+    }
+    // If the path makes this item a parent, expand it.
+    // This allows multiple sections to be open, as it never sets state to `false`.
+    if (isParentActive) {
+      setIsExpanded(true);
+    }
+  }, [pathname, isParentActive]);
 
   const IconComponent = item.icon ? (Icons[item.icon as keyof typeof Icons] as LucideIcon) : null;
 
-  const handleToggle = () => {
-    setIsExpanded(prev => !prev);
-  };
-
-  const handleClick = () => {
-    // If it's a leaf node and the callback exists, call it
-    if (!hasChildren && onLinkClick) {
+  const handleClick = (e: React.MouseEvent) => {
+    if (hasChildren) {
+      // Flag that the next state change is from a direct user action.
+      userAction.current = true;
+      setIsExpanded(prev => !prev);
+    }
+    if (onLinkClick) {
       onLinkClick();
     }
   };
 
   return (
     <li className={cn(level > 0 && "pl-4")}>
-      <div
+      <Link
+        href={item.url}
+        onClick={handleClick}
         className={cn(
-          "flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors",
-          "hover:bg-accent hover:text-accent-foreground",
-          (isActive || (isParentActive && !isExpanded)) && "bg-accent text-accent-foreground font-medium"
+          "flex w-full items-center justify-between rounded-md pl-2 pr-4 py-1 text-sm ",
+          "duration-50 ease-in  max-w-max hover:opacity-80",
+          (isActive || (isParentActive && !isExpanded)) && "text-blue-600 dark:text-blue-400 font-medium hover:opacity-100 "
         )}
+        aria-current={isActive ? "page" : undefined}
+        aria-expanded={hasChildren ? isExpanded : undefined}
       >
-        <Link
-          href={item.url}
-          className="flex items-center gap-2 flex-1 min-w-0"
-          onClick={handleClick}
-          aria-current={isActive ? "page" : undefined}
-        >
+        <span className="flex items-center gap-2 flex-1 min-w-0">
           {IconComponent && <IconComponent size={16} />}
           <span className="truncate">{item.title}</span>
-        </Link>
+        </span>
 
         {hasChildren && (
-          <button
-            onClick={handleToggle}
-            className="p-1 hover:bg-background/50 rounded-sm ml-2"
-            aria-label={`Toggle ${item.title} section`}
-            aria-expanded={isExpanded}
-          >
-            {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
-          </button>
+          // The chevron is now just a visual indicator inside the link
+          <span className="ml-2">
+             {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+          </span>
         )}
-      </div>
+      </Link>
 
       {hasChildren && isExpanded && (
         <ul className="mt-1 space-y-1">
@@ -77,7 +91,7 @@ export function NavItemRenderer({ item, level = 0, onLinkClick }: NavItemRendere
               key={subItem.url} 
               item={subItem} 
               level={level + 1}
-              onLinkClick={onLinkClick} 
+              onLinkClick={onLinkClick}
             />
           ))}
         </ul>
