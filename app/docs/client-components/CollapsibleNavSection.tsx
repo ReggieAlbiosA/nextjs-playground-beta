@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { NavItem } from "../types/nav";
 import { NavItemRenderer } from "./NavItemRenderer";
+import { cn } from "@/lib/utils";
 
 interface CollapsibleNavSectionProps {
   title: string;
@@ -16,28 +17,39 @@ interface CollapsibleNavSectionProps {
 
 export function CollapsibleNavSection({ title, icon, items, onLinkClick }: CollapsibleNavSectionProps) {
   const pathname = usePathname();
-  // Determine initial expanded state based on current path
   const sectionRootUrl = `/docs/${title.toLowerCase().replace(/\s+/g, '-')}`;
-  const isPathActive = pathname.startsWith(sectionRootUrl);
-  const [isExpanded, setIsExpanded] = useState(isPathActive);
 
-  // Effect to expand if a child item becomes active due to navigation
+  // A section is considered "active" if the current URL is the section's root URL.
+  const isSectionActive = pathname === sectionRootUrl;
+  
+  // A section is considered a "parent" if the current URL starts with the section's root URL.
+  // This includes the section's root URL itself.
+  const isParentActive = pathname.startsWith(sectionRootUrl);
+
+  // The section is expanded if it's a parent, but not if it's the active section itself
+  // unless the user has expanded it. We use a state that is managed by an effect.
+  const [isExpanded, setIsExpanded] = useState(isParentActive && !isSectionActive);
+
+  // This effect ensures that the section expands automatically when the user navigates
+  // into it (i.e., to one of its children), and collapses when they navigate away.
   useEffect(() => {
-   setIsExpanded(isPathActive);
-  }, [pathname, isPathActive]); // Only depend on pathname and its derived active state
+    setIsExpanded(isParentActive);
+  }, [pathname, isParentActive]);
 
-  const handleLinkClick = (e: React.MouseEvent) => {
-    // If the clicked link is the root of this section AND the current path is already within this section,
-    // then we want to toggle the collapse state without navigating.
-    // Otherwise, let the Link component handle navigation, and the useEffect will update isExpanded.
-    if (pathname.startsWith(sectionRootUrl) && e.currentTarget.getAttribute('href') === sectionRootUrl) {
-      e.preventDefault(); // Prevent navigation
-      setIsExpanded(prev => !prev); // Toggle collapse state
+  const handleToggle = (e: React.MouseEvent) => {
+    // When the user clicks the section header link:
+    // 1. If the section page is already the active page, we prevent navigation
+    //    and just toggle the expanded state. This allows collapsing the section.
+    if (isSectionActive) {
+      e.preventDefault();
+      setIsExpanded(prev => !prev);
     }
+    // 2. Otherwise, we allow the <Link> component to navigate to the section's root URL.
+    //    The `useEffect` above will then ensure the section is expanded.
 
-    // Always call onLinkClick for mobile menu closure, regardless of navigation or toggle
     if (onLinkClick) {
-      onLinkClick(); // Close mobile menu
+      // Delay closing the mobile menu to allow navigation to start.
+      setTimeout(() => onLinkClick(), 150);
     }
   };
 
@@ -45,12 +57,16 @@ export function CollapsibleNavSection({ title, icon, items, onLinkClick }: Colla
     <section>
       <Link
         href={sectionRootUrl}
-        onClick={handleLinkClick}
-        className="flex items-center justify-between mb-3 px-3 text-sm font-semibold text-foreground/70 hover:text-foreground group"
+        onClick={handleToggle}
+        className={cn(
+          "flex items-center justify-between mb-3 px-3 text-sm font-semibold text-foreground/70 hover:text-foreground group",
+          isSectionActive && "text-blue-600 dark:text-blue-400"
+        )}
+        aria-current={isSectionActive ? "page" : undefined}
       >
         <div className="flex items-center gap-2">
-            {icon}
-            <h3>{title}</h3>
+          {icon}
+          <h3>{title}</h3>
         </div>
         <span className="ml-2 transition-transform duration-200 group-hover:scale-110">
           {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}

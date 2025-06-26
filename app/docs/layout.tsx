@@ -6,7 +6,7 @@ export const metadata = {
   description: "Comprehensive Next.js documentation and guides",
 };
 
-import { NonCollapsibleNavSection } from "./server-components/NonCollapsibleNavSection"; // Renamed import
+import { NonCollapsibleNavSection } from "./client-components/NonCollapsibleNavSection"; // Renamed import
 import { CollapsibleNavSection } from "./client-components/CollapsibleNavSection";
 import { buildingYourApplicationItems, apiReferenceItems, guidesItems, architectureItems, communityItems } from "./types/nav-data";
 
