@@ -1,6 +1,7 @@
 import { NavItem } from "./nav";
 
 export const buildingYourApplicationItems: NavItem[] = [
+  
   {
     title: "Installation",
     url: "/docs/getting-started/installation",
@@ -72,7 +73,8 @@ export const buildingYourApplicationItems: NavItem[] = [
 ];
 
 export const apiReferenceItems: NavItem[] = [
-  {
+  
+  { 
     title: "Directives",
     url: "/docs/api-reference/directives",
     icon: "CodeXml",
@@ -129,5 +131,171 @@ export const apiReferenceItems: NavItem[] = [
         ],
       },
     ],
+  },
+];
+
+export const guidesItems: NavItem[] = [
+  {
+    title: "Analytics",
+    url: "/docs/guides/analytics",
+  },
+  {
+    title: "Authentication",
+    url: "/docs/guides/authentication",
+  },
+  {
+    title: "Backend for Frontend",
+    url: "/docs/guides/backend-for-frontend",
+  },
+  {
+    title: "Caching",
+    url: "/docs/guides/caching",
+  },
+  {
+    title: "CI Build Caching",
+    url: "/docs/guides/ci-build-caching",
+  },
+  {
+    title: "Content Security Policy",
+    url: "/docs/guides/content-security-policy",
+  },
+  {
+    title: "CSS-in-JS",
+    url: "/docs/guides/css-in-js",
+  },
+  {
+    title: "Custom Server",
+    url: "/docs/guides/custom-server",
+  },
+  {
+    title: "Data Security",
+    url: "/docs/guides/data-security",
+  },
+  {
+    title: "Debugging",
+    url: "/docs/guides/debugging",
+  },
+  {
+    title: "Draft Mode",
+    url: "/docs/guides/draft-mode",
+  },
+  {
+    title: "Environment Variables",
+    url: "/docs/guides/environment-variables",
+  },
+  {
+    title: "Forms",
+    url: "/docs/guides/forms",
+  },
+  {
+    title: "ISR",
+    url: "/docs/guides/isr",
+  },
+  {
+    title: "Instrumentation",
+    url: "/docs/guides/instrumentation",
+  },
+  {
+    title: "Internationalization",
+    url: "/docs/guides/internationalization",
+  },
+  {
+    title: "JSON-LD",
+    url: "/docs/guides/json-ld",
+  },
+  {
+    title: "Lazy Loading",
+    url: "/docs/guides/lazy-loading",
+  },
+  {
+    title: "Development Environment",
+    url: "/docs/guides/development-environment",
+  },
+  {
+    title: "MDX",
+    url: "/docs/guides/mdx",
+  },
+  {
+    title: "Memory Usage",
+    url: "/docs/guides/memory-usage",
+  },
+  {
+    title: "Migrating",
+    url: "/docs/guides/migrating",
+    items: [], // This makes it a sub-parent link
+  },
+  {
+    title: "Multi-tenant",
+    url: "/docs/guides/multi-tenant",
+  },
+  {
+    title: "Multi-zones",
+    url: "/docs/guides/multi-zones",
+  },
+  {
+    title: "OpenTelemetry",
+    url: "/docs/guides/opentelemetry",
+  },
+  {
+    title: "Package Bundling",
+    url: "/docs/guides/package-bundling",
+  },
+  {
+    title: "Prefetching",
+    url: "/docs/guides/prefetching",
+  },
+  {
+    title: "Production",
+    url: "/docs/guides/production",
+  },
+  {
+    title: "PWAs",
+    url: "/docs/guides/pwas",
+  },
+  {
+    title: "Redirecting",
+    url: "/docs/guides/redirecting",
+  },
+  {
+    title: "Sass",
+    url: "/docs/guides/sass",
+  },
+  {
+    title: "Scripts",
+    url: "/docs/guides/scripts",
+  },
+  {
+    title: "Self-Hosting",
+    url: "/docs/guides/self-hosting",
+  },
+  {
+    title: "SPAs",
+    url: "/docs/guides/spas",
+  },
+  {
+    title: "Static Exports",
+    url: "/docs/guides/static-exports",
+  },
+  {
+    title: "Tailwind CSS",
+    url: "/docs/guides/tailwind-css",
+  },
+  {
+    title: "Testing",
+    url: "/docs/guides/testing",
+    items: [], // This makes it a sub-parent link
+  },
+  {
+    title: "Third Party Libraries",
+    url: "/docs/guides/third-party-libraries",
+  },
+  {
+    title: "Upgrading",
+    url: "/docs/guides/upgrading",
+    items: [], // This makes it a sub-parent link
+  },
+  {
+    title: "Videos",
+    url: "/docs/guides/videos",
   },
 ];

@@ -24,7 +24,7 @@ export function MobileDocsSidebar({ children }: MobileDocsSidebarProps) {
 
   return (
     <div className="md:hidden !m-0">
-      <div className="flex gap-x-6 px-3">
+      <div className="flex gap-x-6  px-3">
         <Button
           variant="ghost"
           size="icon"
@@ -40,17 +40,16 @@ export function MobileDocsSidebar({ children }: MobileDocsSidebarProps) {
       {isOpen && (
         <>
           <div 
-            className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm"
+            className="fixed inset-0 h-screen z-40 bg-background/80 backdrop-blur-sm"
             onClick={closeMenu}
           />
           <aside
             role="dialog"
             aria-modal="true"
-            className="fixed inset-y-0 left-0 z-50 w-72 bg-background border-r shadow-lg overflow-y-auto"
+            className="fixed h-screen inset-y-0 left-0 z-1500 w-72 bg-background border-r shadow-lg overflow-y-auto"
           >
-            <div className="flex items-center justify-between h-16 px-4 border-b">
-              <h2 className="text-lg font-semibold">Documentation</h2>
-              <Button variant="ghost" size="icon" onClick={toggleMenu} aria-label="Close menu">
+            <div className="flex items-center bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 justify-between h-[69px] px-4 border-b sticky top-0">
+              <Button variant="ghost" size="icon" className="ml-auto" onClick={toggleMenu} aria-label="Close menu">
                 <X size={20} />
               </Button>
             </div>
@@ -61,7 +60,7 @@ export function MobileDocsSidebar({ children }: MobileDocsSidebarProps) {
                 <ul className="space-y-1">
                   <li>
                     <Link href="/" className="flex items-center gap-2 px-3 py-2 text-sm" onClick={closeMenu}>
-                      Home
+                      xlore_
                     </Link>
                   </li>
                   <li>

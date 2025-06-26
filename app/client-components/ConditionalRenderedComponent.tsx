@@ -22,7 +22,7 @@ export function ConditionalDocsSearch() {
   
   // Don't show the general mobile menu on docs pages
   if (pathname.startsWith('/docs')) {
-    return null;
+    return <DocSearch className="md:w-46 lg:w-60 hidden lg:block md:block w-10 " spanClassName="hidden  absolute left-[45px] top-[8px] lg:block md:block"/>;
   }
   
   return <DocSearch className="md:w-46 lg:w-60 sm:w-18 w-10" spanClassName="hidden lg:block md:block"/>;

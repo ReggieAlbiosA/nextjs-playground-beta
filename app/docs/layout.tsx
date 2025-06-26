@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 import { NavSection } from "./server-components/NavSection";
-import { buildingYourApplicationItems, apiReferenceItems } from "./types/nav-data";
+import { buildingYourApplicationItems, apiReferenceItems, guidesItems } from "./types/nav-data";
 
 export default function DocsLayout({
   children,
@@ -19,6 +19,7 @@ export default function DocsLayout({
   const sidebarContent = (
     <>
       <NavSection title="Getting Started" items={buildingYourApplicationItems} />
+      <NavSection title="Guides" items={guidesItems} />
       <NavSection title="API Reference" items={apiReferenceItems} />
     </>
   );
@@ -38,7 +39,7 @@ export default function DocsLayout({
       </DocsSidebar>
 
       <div className="flex-1">
-        <div className="px-4 py-4 w-full border-b border-border md:hidden">
+        <div className="px-4 py-4 w-full sticky top-[65px] border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-border md:hidden">
           <MobileDocsSidebar>
             {sidebarContent}
           </MobileDocsSidebar>
