@@ -12,8 +12,8 @@ import { ThemeProvider } from "next-themes";
 import { BookText, Github, Moon, Sun } from "lucide-react";
 
 // * client components
-import { ThemeSwitcher } from "./client-components/ThemeSwitcher";
-import { ConditionalMobileMenu, ConditionalDocsSearch } from "./client-components/ConditionalMobileMenu";
+import  ThemeSwitcher  from "./client-components/ThemeSwitcher";
+import { ConditionalMobileMenu, ConditionalDocsSearch, ConditionalFooter } from "./client-components/ConditionalRenderedComponent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -103,8 +103,7 @@ export default async function RootLayout({
         />
       </head>
 
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <ThemeProvider
           attribute="class"
@@ -113,7 +112,7 @@ export default async function RootLayout({
           disableTransitionOnChange
           storageKey="app-theme"
         >
-          <header className="sticky top-0  w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <header className="sticky top-0  z-1000 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
              {/* ... your header code ... */}
              <div className="flex items-center justify-between h-16  px-4 mx-auto sm:px-6 lg:px-8">
                <Link href="/" className="text-lg font-bold " aria-label="Next.js Playground Home">
@@ -153,6 +152,7 @@ export default async function RootLayout({
           </header>
 
           <main>{children}</main>
+          <ConditionalFooter /> {/* Moved Footer here */}
         </ThemeProvider>
       </body>
     </html>

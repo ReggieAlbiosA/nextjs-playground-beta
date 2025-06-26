@@ -6,7 +6,7 @@ import Link from "next/link";
 import { BookText, Github, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button"; // Assuming you have a UI library like shadcn/ui
 
-export function MobileMenu() {
+export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   // menuRef is no longer needed for outside click detection, but can be kept for other purposes if needed.
   const menuRef = useRef<HTMLDivElement>(null);

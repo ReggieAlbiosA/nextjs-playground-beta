@@ -18,7 +18,7 @@ import { DialogTitle, DialogTrigger } from "@radix-ui/react-dialog";
 
 interface SearchResult extends NavItem {}
 
-export function DocSearch({ className, spanClassName }: { className?: string, spanClassName?: string }) {
+export default function DocSearch({ className, spanClassName }: { className?: string, spanClassName?: string }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -107,7 +107,7 @@ export function DocSearch({ className, spanClassName }: { className?: string, sp
                 </kbd>
             </Button>
         </DialogTrigger>
-        <DialogContent aria-describedby={undefined} className="sm:max-w-2xl p-0 overflow-hidden top-[10%] translate-y-0" >
+        <DialogContent aria-describedby={undefined} className="sm:max-w-2xl p-0 z-[2000] overflow-hidden top-[10%] translate-y-0" >
           <DialogHeader className="relative p-0 border-b">
             <VisuallyHidden>
               <DialogTitle className="text-base font-semibold">

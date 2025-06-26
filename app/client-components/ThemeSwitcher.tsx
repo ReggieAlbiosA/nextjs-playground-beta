@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 // Export the cookie name so layout.tsx can use the same constant, preventing typos.
 export const THEME_COOKIE_NAME = 'app-theme';
 
-export function ThemeSwitcher({ children }: { children: React.ReactNode }) {
+export default function ThemeSwitcher({ children }: { children: React.ReactNode }) {
   // Destructure the 'theme' value as well, which tells us the user's preference ('light', 'dark', or 'system')
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);

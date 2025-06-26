@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { BookText, Github, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { DocSearch } from "@/app/client-components/DocSearch";
+import  DocSearch  from "@/app/client-components/DocSearch";
 
 interface MobileDocsSidebarProps {
   children: React.ReactNode;
