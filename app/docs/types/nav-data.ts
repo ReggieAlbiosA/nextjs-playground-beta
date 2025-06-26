@@ -72,68 +72,6 @@ export const buildingYourApplicationItems: NavItem[] = [
   },
 ];
 
-export const apiReferenceItems: NavItem[] = [
-  
-  { 
-    title: "Directives",
-    url: "/docs/api-reference/directives",
-    icon: "CodeXml",
-    items: [
-      { title: "use client", url: "/docs/api-reference/directives/use-client" },
-      { title: "use server", url: "/docs/api-reference/directives/use-server" },
-    ],
-  },
-  {
-    title: "Components",
-    url: "/docs/api-reference/components",
-    icon: "Blocks",
-    items: [
-      { title: "Font", url: "/docs/api-reference/components/font" },
-      { title: "Image", url: "/docs/api-reference/components/image" },
-      { title: "Link", url: "/docs/api-reference/components/link" },
-      { title: "Script", url: "/docs/api-reference/components/script" },
-    ],
-  },
-  {
-    title: "File-system conventions",
-    url: "/docs/api-reference/file-conventions",
-    icon: "Files",
-    items: [
-      { title: "default.js", url: "/docs/file-conventions/default-js" },
-      { title: "Dynamic Segments", url: "/docs/file-conventions/dynamic-segments" },
-      { title: "error.js", url: "/docs/file-conventions/error-js" },
-      { title: "generate-metadata.js", url: "/docs/file-conventions/generate-metadata-js" },
-      { title: "instrumentation-client.js", url: "/docs/file-conventions/instrumentation-client-js" },
-      { title: "Intercepting Routes", url: "/docs/file-conventions/intercepting-routes" },
-      { title: "layout.js", url: "/docs/file-conventions/layout-js" },
-      { title: "loading.js", url: "/docs/file-conventions/loading-js" },
-      { title: "mdx-components.js", url: "/docs/file-conventions/mdx-components-js" },
-      { title: "middleware.js", url: "/docs/file-conventions/middleware-js" },
-      { title: "not-found.js", url: "/docs/file-conventions/not-found-js" },
-      { title: "page.js", url: "/docs/file-conventions/page-js" },
-      { title: "Parallel Routes", url: "/docs/file-conventions/parallel-routes" },
-      { title: "public", url: "/docs/file-conventions/public" },
-      { title: "route.js", url: "/docs/file-conventions/route-js" },
-      { title: "Route Groups", url: "/docs/file-conventions/route-groups" },
-      { title: "Route Segment Config", url: "/docs/file-conventions/route-segment-config" },
-      { title: "src", url: "/docs/file-conventions/src" },
-      { title: "unauthorized.js", url: "/docs/file-conventions/unauthorized-js" },
-      {
-        title: "Metadata Files",
-        url: "/docs/api-reference/metadata-files",
-        icon: "FileJson2",
-        items: [
-          { title: "favicon, icon, and apple-icon", url: "/docs/api-reference/metadata-files/favicon-icon" },
-          { title: "manifest.json", url: "/docs/api-reference/metadata-files/manifest-json" },
-          { title: "opengraph-image", url: "/docs/api-reference/metadata-files/opengraph-image" },
-          { title: "robots.txt", url: "/docs/api-reference/metadata-files/robots-txt" },
-          { title: "sitemap.xml", url: "/docs/api-reference/metadata-files/sitemap-xml" },
-        ],
-      },
-    ],
-  },
-];
-
 export const guidesItems: NavItem[] = [
   {
     title: "Analytics",
@@ -222,7 +160,12 @@ export const guidesItems: NavItem[] = [
   {
     title: "Migrating",
     url: "/docs/guides/migrating",
-    items: [], // This makes it a sub-parent link
+    items: [
+      { title: "App Router", url: "/docs/guides/migrating/app-router" },
+      { title: "Create React App", url: "/docs/guides/migrating/create-react-app" },
+      { title: "Vite", url: "/docs/guides/migrating/vite" },
+    ], // This makes it a sub-parent link
+    icon: "ArrowRight",
   },
   {
     title: "Multi-tenant",
@@ -283,7 +226,13 @@ export const guidesItems: NavItem[] = [
   {
     title: "Testing",
     url: "/docs/guides/testing",
-    items: [], // This makes it a sub-parent link
+    items: [
+      { title: "Cypress", url: "/docs/guides/testing/cypress" },
+      { title: "Jest", url: "/docs/guides/testing/jest" },
+      { title: "Playwright", url: "/docs/guides/testing/playwright" },
+      { title: "Vitest", url: "/docs/guides/testing/vitest" },
+    ], // This makes it a sub-parent link
+    icon: "FlaskConical",
   },
   {
     title: "Third Party Libraries",
@@ -292,10 +241,177 @@ export const guidesItems: NavItem[] = [
   {
     title: "Upgrading",
     url: "/docs/guides/upgrading",
-    items: [], // This makes it a sub-parent link
+    items: [
+      { title: "Codemods" , url: "/docs/guides/upgrading/codemods" },
+      { title: "Version 14", url: "/docs/guides/upgrading/14" },
+      { title: "Version 15", url: "/docs/guides/upgrading/15" },
+    ], // This makes it a sub-parent link
+    icon: "ArrowUpRight",
   },
   {
     title: "Videos",
     url: "/docs/guides/videos",
   },
 ];
+
+
+export const apiReferenceItems: NavItem[] = [
+  
+  { 
+    title: "Directives",
+    url: "/docs/api-reference/directives",
+    icon: "CodeXml",
+    items: [
+      { title: "use client", url: "/docs/api-reference/directives/use-client" },
+      { title: "use server", url: "/docs/api-reference/directives/use-server" },
+    ],
+  },
+  {
+    title: "Components",
+    url: "/docs/api-reference/components",
+    icon: "Blocks",
+    items: [
+      { title: "Font", url: "/docs/api-reference/components/font" },
+      { title: "Image", url: "/docs/api-reference/components/image" },
+      { title: "Link", url: "/docs/api-reference/components/link" },
+      { title: "Script", url: "/docs/api-reference/components/script" },
+    ],
+  },
+  {
+    title: "File-system conventions",
+    url: "/docs/api-reference/file-conventions",
+    icon: "Files",
+    items: [
+      { title: "default.js", url: "/docs/file-conventions/default-js" },
+      { title: "Dynamic Segments", url: "/docs/file-conventions/dynamic-segments" },
+      { title: "error.js", url: "/docs/file-conventions/error-js" },
+      { title: "generate-metadata.js", url: "/docs/file-conventions/generate-metadata-js" },
+      { title: "instrumentation-client.js", url: "/docs/file-conventions/instrumentation-client-js" },
+      { title: "Intercepting Routes", url: "/docs/file-conventions/intercepting-routes" },
+      { title: "layout.js", url: "/docs/file-conventions/layout-js" },
+      { title: "loading.js", url: "/docs/file-conventions/loading-js" },
+      { title: "mdx-components.js", url: "/docs/file-conventions/mdx-components-js" },
+      { title: "middleware.js", url: "/docs/file-conventions/middleware-js" },
+      { title: "not-found.js", url: "/docs/file-conventions/not-found-js" },
+      { title: "page.js", url: "/docs/file-conventions/page-js" },
+      { title: "Parallel Routes", url: "/docs/file-conventions/parallel-routes" },
+      { title: "public", url: "/docs/file-conventions/public" },
+      { title: "route.js", url: "/docs/file-conventions/route-js" },
+      { title: "Route Groups", url: "/docs/file-conventions/route-groups" },
+      { title: "Route Segment Config", url: "/docs/file-conventions/route-segment-config" },
+      { title: "src", url: "/docs/file-conventions/src" },
+      { title: "unauthorized.js", url: "/docs/file-conventions/unauthorized-js" },
+      {
+        title: "Metadata Files",
+        url: "/docs/api-reference/metadata-files",
+        icon: "FileJson2",
+        items: [
+          { title: "favicon, icon, and apple-icon", url: "/docs/api-reference/metadata-files/favicon-icon" },
+          { title: "manifest.json", url: "/docs/api-reference/metadata-files/manifest-json" },
+          { title: "opengraph-image", url: "/docs/api-reference/metadata-files/opengraph-image" },
+          { title: "robots.txt", url: "/docs/api-reference/metadata-files/robots-txt" },
+          { title: "sitemap.xml", url: "/docs/api-reference/metadata-files/sitemap-xml" },
+        ],
+      },
+    ],
+  },
+   {
+    title: "Functions",
+    url: "/docs/api-reference/functions",
+    icon: "FunctionSquare",
+    items: [
+      { title: "cache", url: "/docs/api-reference/functions/cache" },
+      { title: "cacheLife", url: "/docs/api-reference/functions/cacheLife" },
+      { title: "cacheTag", url: "/docs/api-reference/functions/cacheTag" },
+      { title: "connection", url: "/docs/api-reference/functions/connection" },
+      { title: "cookies", url: "/docs/api-reference/functions/cookies" },
+      { title: "draftMode", url: "/docs/api-reference/functions/draftMode" },
+      { title: "fetch", url: "/docs/api-reference/functions/fetch" },
+      { title: "forbidden", url: "/docs/api-reference/functions/forbidden" },
+      { title: "generateImageMetadata", url: "/docs/api-reference/functions/generateImageMetadata" },
+      { title: "generateMetadata", url: "/docs/api-reference/functions/generateMetadata" },
+      { title: "generateSitemaps", url: "/docs/api-reference/functions/generateSitemaps" },
+      { title: "generateStaticParams", url: "/docs/api-reference/functions/generateStaticParams" },
+      { title: "generateViewport", url: "/docs/api-reference/functions/generateViewport" },
+      { title: "headers", url: "/docs/api-reference/functions/headers" },
+      { title: "ImageResponse", url: "/docs/api-reference/functions/ImageResponse" },
+      { title: "NextRequest", url: "/docs/api-reference/functions/NextRequest" },
+      { title: "NextResponse", url: "/docs/api-reference/functions/NextResponse" },
+      { title: "notFound", url: "/docs/api-reference/functions/notFound" },
+      { title: "permanentRedirect", url: "/docs/api-reference/functions/permanentRedirect" },
+      { title: "redirect", url: "/docs/api-reference/functions/redirect" },
+      { title: "revalidatePath", url: "/docs/api-reference/functions/revalidatePath" },
+      { title: "revalidateTag", url: "/docs/api-reference/functions/revalidateTag" },
+      { title: "unauthorized", url: "/docs/api-reference/functions/unauthorized" },
+      { title: "unstable_cache", url: "/docs/api-reference/functions/unstable_cache" },
+      { title: "unstable_noStore", url: "/docs/api-reference/functions/unstable_noStore" },
+      { title: "unstable_rethrow", url: "/docs/api-reference/functions/unstable_rethrow" },
+      { title: "useLinkStatus", url: "/docs/api-reference/functions/useLinkStatus" },
+      { title: "useParams", url: "/docs/api-reference/functions/useParams" },
+      { title: "usePathname", url: "/docs/api-reference/functions/usePathname" },
+      { title: "useReportWebVitals", url: "/docs/api-reference/functions/useReportWebVitals" },
+      { title: "useRouter", url: "/docs/api-reference/functions/useRouter" },
+      { title: "useSearchParams", url: "/docs/api-reference/functions/useSearchParams" },
+      { title: "useSelectedLayoutSegment", url: "/docs/api-reference/functions/useSelectedLayoutSegment" },
+      { title: "useSelectedLayoutSegments", url: "/docs/api-reference/functions/useSelectedLayoutSegments" },
+      { title: "userAgent", url: "/docs/api-reference/functions/userAgent" },
+    ],
+  },
+  {
+    title: "Configuration",
+    url: "/docs/api-reference/configuration",
+    icon: "Settings",
+    items: [
+      { title: "next.config.js", url: "/docs/api-reference/configuration/next-config-js" },
+      { title: "TypeScript", url: "/docs/api-reference/configuration/typescript" },
+      { title: "ESLint", url: "/docs/api-reference/configuration/eslint" },
+    ],
+  },
+  {
+    title: "CLI",
+    url: "/docs/api-reference/cli",
+    icon: "Terminal",
+    items: [
+      { title: "create-next-app", url: "/docs/api-reference/cli/create-next-app" },
+      { title: "next CLI", url: "/docs/api-reference/cli/next-cli" },
+    ]
+  },
+  {
+    title: "Edge Runtime",
+    url: "/docs/api-reference/edge-runtime",
+  },
+  {
+    title: "Turbo",
+    url: "/docs/api-reference/turbo",
+  }
+];
+
+export const architectureItems: NavItem[] = [
+  {
+    title: "Accessibility",
+    url: "/docs/architecture/accessibility",
+  },
+  {
+    title: "Fast Refresh",
+    url: "/docs/architecture/refresh",
+  },
+  {
+    title: "Next.js Compiler",
+    url: "/docs/architecture/nextjs-compiler",
+  },
+  {
+    title: "Supported Browsers",
+    url: "/docs/architecture/supported-browsers",
+  },
+]
+
+export const communityItems: NavItem[] = [
+  {
+    title: "Contributing Guide",
+    url: "/docs/community/discord",
+  },
+  {
+    title: "Rspack",
+    url: "/docs/community/rspack",
+  },
+]

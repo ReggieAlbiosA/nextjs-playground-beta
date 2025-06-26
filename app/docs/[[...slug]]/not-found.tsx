@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     // This container centers the content vertically in the space below your sticky header.
     // h-16 (4rem) is the height of your header.
-    <div className="flex min-h-[calc(100vh-5rem)] w-full flex-col items-center justify-center space-y-8 p-8 text-center">
+    <div className="flex h-[calc(100vh-9rem)] w-full flex-col items-center justify-center space-y-8 p-8 text-center">
       
       <div className="flex flex-col items-center space-y-4">
         <SearchX

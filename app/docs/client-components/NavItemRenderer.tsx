@@ -64,7 +64,7 @@ export function NavItemRenderer({ item, level = 0, onLinkClick }: NavItemRendere
         href={item.url}
         onClick={handleClick}
         className={cn(
-          "flex w-full items-center justify-between rounded-md pl-2 pr-4 py-1 text-sm ",
+          "flex w-full items-center justify-between rounded-md pl-2 pr-4 py-0.5 text-sm ",
           "duration-50 ease-in  max-w-max hover:opacity-80",
           (isActive || (isParentActive && !isExpanded)) && "text-blue-600 dark:text-blue-400 font-medium hover:opacity-100 "
         )}

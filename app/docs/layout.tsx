@@ -6,8 +6,12 @@ export const metadata = {
   description: "Comprehensive Next.js documentation and guides",
 };
 
-import { NavSection } from "./server-components/NavSection";
-import { buildingYourApplicationItems, apiReferenceItems, guidesItems } from "./types/nav-data";
+import { NonCollapsibleNavSection } from "./server-components/NonCollapsibleNavSection"; // Renamed import
+import { CollapsibleNavSection } from "./client-components/CollapsibleNavSection";
+import { buildingYourApplicationItems, apiReferenceItems, guidesItems, architectureItems, communityItems } from "./types/nav-data";
+
+import { BookOpen } from "lucide-react";
+
 
 export default function DocsLayout({
   children,
@@ -18,9 +22,11 @@ export default function DocsLayout({
   // This JSX is now pre-rendered on the server
   const sidebarContent = (
     <>
-      <NavSection title="Getting Started" items={buildingYourApplicationItems} />
-      <NavSection title="Guides" items={guidesItems} />
-      <NavSection title="API Reference" items={apiReferenceItems} />
+      <NonCollapsibleNavSection title="Getting Started" items={buildingYourApplicationItems} />
+      <CollapsibleNavSection title="Guides" icon={<BookOpen size={16}/>} items={guidesItems} />
+      <NonCollapsibleNavSection title="API Reference" items={apiReferenceItems} />
+      <NonCollapsibleNavSection title="Architecture" items={architectureItems} />
+      <NonCollapsibleNavSection title="Community" items={communityItems} />
     </>
   );
 

@@ -3,14 +3,14 @@ import { NavItemRenderer } from '../client-components/NavItemRenderer';
 import Link from 'next/link';
 
 
-interface NavSectionProps {
+interface NonCollapsibleNavSectionProps {
   title: string;
   items: NavItem[];
   onLinkClick?: () => void;
 }
 
 // This is a Server Component
-export function NavSection({ title, items, onLinkClick }: NavSectionProps) {
+export function NonCollapsibleNavSection({ title, items, onLinkClick }: NonCollapsibleNavSectionProps) {
   return (
     <section>
       <Link href={`/docs/${title.toLowerCase().replace(/\s+/g, '-')}`}>
