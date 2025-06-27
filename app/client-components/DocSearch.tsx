@@ -11,12 +11,12 @@ import {
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { buildingYourApplicationItems, apiReferenceItems } from "@/app/docs/types/nav-data";
+import { buildingYourApplicationItems, apiReferenceItems, guidesItems, architectureItems, communityItems } from "@/app/docs/types/nav-data";
 import { NavItem } from "@/app/docs/types/nav";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { DialogTitle, DialogTrigger } from "@radix-ui/react-dialog";
 
-interface SearchResult extends NavItem {}
+type SearchResult = NavItem;
 
 export default function DocSearch({ className, spanClassName }: { className?: string, spanClassName?: string }) {
   const [query, setQuery] = useState("");
@@ -25,7 +25,13 @@ export default function DocSearch({ className, spanClassName }: { className?: st
   const inputRef = useRef<HTMLInputElement>(null);
 
   const allDocs: NavItem[] = useMemo(() => {
-    return [...buildingYourApplicationItems, ...apiReferenceItems];
+    return [
+      ...buildingYourApplicationItems,
+      ...apiReferenceItems,
+      ...guidesItems,
+      ...architectureItems,
+      ...communityItems,
+    ];
   }, []);
 
   // Perform search synchronously on query change
@@ -179,7 +185,7 @@ export default function DocSearch({ className, spanClassName }: { className?: st
                   <Search className="h-6 w-6 text-muted-foreground" />
                 </div>
                 <p className="text-sm font-medium text-foreground mb-2">
-                  No results found for "{query}"
+                  No results found for &quot;{query}&quot;
                 </p>
                 <p className="text-xs text-muted-foreground">
                   Try adjusting your search terms or check for typos

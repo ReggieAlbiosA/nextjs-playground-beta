@@ -47,7 +47,7 @@ export function NavItemRenderer({ item, level = 0, onLinkClick }: NavItemRendere
 
   const IconComponent = item.icon ? (Icons[item.icon as keyof typeof Icons] as LucideIcon) : null;
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = () => {
     if (hasChildren) {
       // Flag that the next state change is from a direct user action.
       userAction.current = true;

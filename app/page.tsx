@@ -88,7 +88,7 @@ export default function Home() {
               </div>
               <p className="text-sm text-muted-foreground">
                 Enable interactivity and state management on the client with
-                the "use client" directive.
+                the &quot;use client&quot; directive.
               </p>
             </li>
             <li className="grid gap-2">
