@@ -114,7 +114,7 @@ export default async function DocsPage({ params }: { params: Promise<{ slug?: st
   }
 
   return (
-    <div className="prose dark:prose-invert ">
+    <article className="prose dark:prose-invert ">
       <h1>{activeItem.title}</h1>
       {subItems.length > 0 ? (
         <>
@@ -133,6 +133,6 @@ export default async function DocsPage({ params }: { params: Promise<{ slug?: st
       ) : (
          <p>Content for "{activeItem.title}" goes here.</p>
       )}
-    </div>
+    </article>
   );
 }

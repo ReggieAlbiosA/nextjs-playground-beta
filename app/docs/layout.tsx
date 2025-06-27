@@ -51,11 +51,10 @@ export default function DocsLayout({
           </MobileDocsSidebar>
         </div>
         
-        {/* Main content area needs to account for the fixed sidebar width on desktop */}
         <main className="md:ml-64">
-          <section className="container mx-auto px-4 py-8">
+          <article className="container mx-auto px-4 py-8">
             {children}
-          </section>
+          </article>
         </main>
       </div>
     </div>

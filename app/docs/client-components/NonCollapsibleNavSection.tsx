@@ -20,14 +20,14 @@ export function NonCollapsibleNavSection({ title, items, onLinkClick }: NonColla
   return (
     <section>
       <Link href={sectionRootUrl}>
-        <h3
+        <h2
           className={cn(
             'mb-3 px-3 text-sm font-semibold text-foreground/70 hover:text-foreground',
             isActive && 'text-blue-600 dark:text-blue-400'
           )}
         >
           {title}
-        </h3>
+        </h2>
       </Link>
       <ul className="space-y-1">
         {items.map(item => (

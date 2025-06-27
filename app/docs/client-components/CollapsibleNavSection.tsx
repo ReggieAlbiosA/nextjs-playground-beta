@@ -66,7 +66,7 @@ export function CollapsibleNavSection({ title, icon, items, onLinkClick }: Colla
       >
         <div className="flex items-center gap-2">
           {icon}
-          <h3>{title}</h3>
+          <h2>{title}</h2>
         </div>
         <span className="ml-2 transition-transform duration-200 group-hover:scale-110">
           {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}

@@ -1,4 +1,7 @@
 // /home/anon/Documents/WebDev/nextjs-playground-beta/app/server-components/Footer.tsx
+
+import Link from "next/link";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -19,19 +22,19 @@ export default function Footer() {
             Reggie Albios A.
           </a>
         </p>
-        <div className="flex justify-center space-x-4 mt-4">
-          <a href="/docs" className="text-sm hover:text-foreground/80">
+        <nav className="flex justify-center space-x-4 mt-4" aria-label="Footer navigation">
+          <Link href="/docs" className="text-sm hover:text-foreground/80">
             Docs
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://github.com/ReggieAlbiosA/nextjs-playground-beta"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm hover:text-foreground/80"
           >
             GitHub
-          </a>
-        </div>
+          </Link>
+        </nav>
       </div>
     </footer>
   );
