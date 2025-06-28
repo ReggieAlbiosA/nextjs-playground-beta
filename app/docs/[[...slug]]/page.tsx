@@ -1,7 +1,8 @@
 import { LinkCard } from "../client-components/LinkCard";
-import { buildingYourApplicationItems, apiReferenceItems, guidesItems, architectureItems, communityItems } from "../types/nav-data";
+import { buildingYourApplicationItems, guidesItems, apiReferenceItems, architectureItems, communityItems } from "../types/nav-data";
 import { NavItem } from "../types/nav";
 import { notFound } from "next/navigation";
+import { RouteHandlersPage } from "./(preview)/(file-system-conventions)/route-js/server-components/RouteJS";
 
 export async function generateStaticParams() {
   const allNavItems: NavItem[] = [
@@ -22,7 +23,7 @@ export async function generateStaticParams() {
 
     for (const item of items) {
       // Example URL: /docs/routing/route-handlers -> slug: ['routing', 'route-handlers']
-      const slug = item.url.split('/').filter(segment => segment && segment !== 'docs');
+      const slug: string[] = item.url.split('/').filter((segment: string) => segment && segment !== 'docs');
       paths.push({ slug });
 
       if (item.items) {
@@ -108,6 +109,24 @@ export default async function DocsPage({ params }: { params: Promise<{ slug?: st
 
       if (baseItem) {
         const pageTitle = `${baseItem.title} - ${lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1)}`;
+        
+        // Conditionally render the RouteHandlersPage for the specific preview
+        if (basePath === '/docs/api-reference/file-conventions/route-js' && lastSegment === 'preview') {
+          return (
+            <article className="prose dark:prose-invert max-w-none">
+              <header className="mb-8">
+                <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+                  {pageTitle}
+                </h1>
+                <p className="mt-4 text-lg text-muted-foreground">
+                  This page demonstrates the usage of Route Handlers in Next.js. Explore the interactive examples below to see how different rendering modes and cookie management work.
+                </p>
+              </header>
+              <RouteHandlersPage />
+            </article>
+          );
+        }
+        
         const pageDescription = `Content related to the ${lastSegment} of ${baseItem.title}.`;
         return (
           <article className="prose dark:prose-invert max-w-none">

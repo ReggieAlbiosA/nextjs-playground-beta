@@ -18,6 +18,13 @@ import { DialogTitle, DialogTrigger } from "@radix-ui/react-dialog";
 
 type SearchResult = NavItem;
 
+const flattenNavItems = (items: NavItem[]): NavItem[] => {
+  return items.flatMap(item => {
+    const children = item.items ? flattenNavItems(item.items) : [];
+    return [item, ...children];
+  });
+};
+
 export default function DocSearch({ className, spanClassName }: { className?: string, spanClassName?: string }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -25,13 +32,14 @@ export default function DocSearch({ className, spanClassName }: { className?: st
   const inputRef = useRef<HTMLInputElement>(null);
 
   const allDocs: NavItem[] = useMemo(() => {
-    return [
+    const allItems = [
       ...buildingYourApplicationItems,
       ...apiReferenceItems,
       ...guidesItems,
       ...architectureItems,
       ...communityItems,
     ];
+    return flattenNavItems(allItems);
   }, []);
 
   // Perform search synchronously on query change

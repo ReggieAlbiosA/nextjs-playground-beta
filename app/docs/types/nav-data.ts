@@ -360,6 +360,7 @@ export const apiReferenceItems: NavItem[] = [
       { title: "Route Groups", url: "/docs/api-reference/file-conventions/route-groups", description: "Organize routes without affecting the URL structure." },
       { title: "Route Segment Config", url: "/docs/api-reference/file-conventions/route-segment-config", description: "Configure the behavior of a route segment." },
       { title: "src", url: "/docs/api-reference/file-conventions/src", description: "Organize your application's source code." },
+      { title: "template.js", url: "/docs/api-reference/file-conventions/template-js", description: "Define a template for a route segment." },
       { title: "unauthorized.js", url: "/docs/api-reference/file-conventions/unauthorized-js", description: "Define an unauthorized UI for a route segment." },
       {
         title: "Metadata Files",
