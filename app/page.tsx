@@ -157,7 +157,7 @@ export default function Home() {
           </div>
           <div className="mx-auto w-full max-w-sm space-y-2">
             <Button asChild size="lg">
-              <Link href="/docs">Browse Documentation</Link>
+              <Link href="/docs" prefetch={true}>Browse Documentation</Link>
             </Button>
           </div>
         </div>

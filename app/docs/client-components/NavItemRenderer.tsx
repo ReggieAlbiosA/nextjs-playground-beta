@@ -62,6 +62,7 @@ export function NavItemRenderer({ item, level = 0, onLinkClick }: NavItemRendere
     <li className={cn(level > 0 && "pl-4")}>
       <Link
         href={item.url}
+        prefetch={true}
         onClick={handleClick}
         className={cn(
           "flex w-full items-center justify-between rounded-md pl-2 pr-4 py-0.5 text-sm ",

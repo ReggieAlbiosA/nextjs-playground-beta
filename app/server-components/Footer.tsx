@@ -23,17 +23,17 @@ export default function Footer() {
           </a>
         </p>
         <nav className="flex justify-center space-x-4 mt-4" aria-label="Footer navigation">
-          <Link href="/docs" className="text-sm hover:text-foreground/80">
+          <Link href="/docs" prefetch={true} className="text-sm hover:text-foreground/80">
             Docs
           </Link>
-          <Link
+          <a
             href="https://github.com/ReggieAlbiosA/nextjs-playground-beta"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm hover:text-foreground/80"
           >
             GitHub
-          </Link>
+          </a>
         </nav>
       </div>
     </footer>

@@ -57,6 +57,7 @@ export function CollapsibleNavSection({ title, icon, items, onLinkClick }: Colla
     <section>
       <Link
         href={sectionRootUrl}
+        prefetch={true}
         onClick={handleToggle}
         className={cn(
           "flex items-center justify-between mb-3 px-3 text-sm font-semibold text-foreground/70 hover:text-foreground group",

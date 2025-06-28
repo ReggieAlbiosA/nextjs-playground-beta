@@ -43,6 +43,7 @@ export default function MobileMenu() {
           <nav className="w-full flex flex-col justify-center primary-bg">
             <Link
               href="/"
+              prefetch
               className="py-2 px-5 text-sm transition-colors hover:text-foreground/80"
             >
               xlore_
@@ -50,13 +51,14 @@ export default function MobileMenu() {
             <hr className="w-full h-px my-2 border-t border-border" />
             <Link
               href="/docs"
+              prefetch
               className="flex items-center gap-1.5 py-2 px-5 text-sm transition-colors hover:text-foreground/80"
             >
               <BookText size={16} />
               <span>Docs</span>
             </Link>
             <hr className="w-full h-px my-2 border-t border-border" />
-            <Link
+            <a
               rel="noopener noreferrer"
               target="_blank"
               href="https://github.com/ReggieAlbiosA/nextjs-playground-beta"
@@ -64,7 +66,7 @@ export default function MobileMenu() {
             >
               <Github size={16} />
               <span>Github</span>
-            </Link>
+            </a>
             <hr className="w-full h-px my-2 border-t border-border" />
           </nav>
         </div>

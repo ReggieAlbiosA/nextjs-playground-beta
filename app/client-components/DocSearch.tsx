@@ -161,6 +161,7 @@ export default function DocSearch({ className, spanClassName }: { className?: st
                     <li key={`${item.url}-${index}`}>
                       <Link
                         href={item.url}
+                        prefetch={true}
                         className="flex flex-col gap-1 px-4 py-3 text-sm hover:bg-accent hover:text-accent-foreground transition-colors duration-150 focus:bg-accent focus:text-accent-foreground focus:outline-none border-l-2 border-l-transparent hover:border-l-primary/50"
                         onClick={handleLinkClick}
                         tabIndex={0}

@@ -12,6 +12,7 @@ export function LinkCard({ item }: LinkCardProps) {
   return (
     <Link
       href={item.url}
+      prefetch={true}
       className="
         block p-6 rounded-lg transition-all duration-300
         bg-card text-card-foreground 

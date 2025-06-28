@@ -59,19 +59,19 @@ export function MobileDocsSidebar({ children }: MobileDocsSidebarProps) {
                 {/* Mobile-specific links can still live here */}
                 <ul className="space-y-1">
                   <li>
-                    <Link href="/" className="flex items-center gap-2 px-3 py-2 text-sm" onClick={closeMenu}>
+                    <Link href="/" prefetch className="flex items-center gap-2 px-3 py-2 text-sm" onClick={closeMenu}>
                       xlore_
                     </Link>
                   </li>
                   <li>
-                    <Link href="/docs" className="flex items-center gap-2 px-3 py-2 text-sm" onClick={closeMenu}>
+                    <Link href="/docs" prefetch className="flex items-center gap-2 px-3 py-2 text-sm" onClick={closeMenu}>
                       <BookText size={16} /> Docs
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://github.com/ReggieAlbiosA/nextjs-playground-beta" target="_blank" className="flex items-center gap-2 px-3 py-2 text-sm" onClick={closeMenu}>
+                    <a href="https://github.com/ReggieAlbiosA/nextjs-playground-beta" target="_blank" className="flex items-center gap-2 px-3 py-2 text-sm" onClick={closeMenu}>
                       <Github size={16} /> Github
-                    </Link>
+                    </a>
                   </li>
                 </ul>
                 <hr className="border-border" />

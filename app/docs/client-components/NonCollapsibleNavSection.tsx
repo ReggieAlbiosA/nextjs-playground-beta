@@ -19,7 +19,7 @@ export function NonCollapsibleNavSection({ title, items, onLinkClick }: NonColla
 
   return (
     <section>
-      <Link href={sectionRootUrl}>
+      <Link href={sectionRootUrl} prefetch={true}>
         <h2
           className={cn(
             'mb-3 px-3 text-sm font-semibold text-foreground/70 hover:text-foreground',

@@ -23,7 +23,7 @@ export default function NotFound() {
       </div>
 
       <Button asChild>
-        <Link href="/">Return Home</Link>
+        <Link href="/" prefetch={true}>Return Home</Link>
       </Button>
 
     </main>
