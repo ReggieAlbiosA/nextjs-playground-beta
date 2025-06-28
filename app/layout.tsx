@@ -15,6 +15,7 @@ import { BookText, Github, Moon, Sun } from "lucide-react";
 import  ThemeSwitcher  from "./client-components/ThemeSwitcher";
 import { ConditionalMobileMenu, ConditionalDocsSearch, ConditionalFooter } from "./client-components/ConditionalRenderedComponent";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
