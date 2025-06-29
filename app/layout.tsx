@@ -6,6 +6,7 @@ import "./globals.css";
 // * next imports
 import Link from "next/link";
 import { headers, cookies } from 'next/headers';
+import Script from "next/script";
 
 // * dependencies
 import { ThemeProvider } from "next-themes";
@@ -78,10 +79,10 @@ export default async function RootLayout({
           This inline script is vital. It runs instantly on the client, before React hydrates,
           ensuring the theme is correct from the very first paint. It mirrors the server logic.
         */}
-          {/* <script
+          <Script
           crossOrigin="anonymous"
           src="//unpkg.com/react-scan/dist/auto.global.js"
-        /> */}
+        />
 
         <script
           dangerouslySetInnerHTML={{
