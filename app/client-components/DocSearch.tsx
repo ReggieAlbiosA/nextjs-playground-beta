@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Dialog,
   DialogContent,
@@ -15,6 +16,7 @@ import { buildingYourApplicationItems, apiReferenceItems, guidesItems, architect
 import { NavItem } from "@/app/docs/types/nav";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { DialogTitle, DialogTrigger } from "@radix-ui/react-dialog";
+import { cn } from "@/lib/utils";
 
 type SearchResult = NavItem;
 
@@ -25,11 +27,22 @@ const flattenNavItems = (items: NavItem[]): NavItem[] => {
   });
 };
 
+const initialNavItems: NavItem[] = [
+    { title: "Getting Started", url: "/docs/getting-started", description: "An overview of the fundamentals and project structure." },
+    { title: "Guides", url: "/docs/guides", description: "Practical guides for building features with Next.js." },
+    { title: "API Reference", url: "/docs/api-reference", description: "A detailed reference for the Next.js API." },
+    { title: "Architecture", url: "/docs/architecture", description: "Learn about the architecture of Next.js."},
+    { title: "Community", url: "/docs/community", description: "Join the community and contribute to Next.js." },
+];
+
 export default function DocSearch({ className, spanClassName }: { className?: string, spanClassName?: string }) {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<SearchResult[]>([]);
+  const [displayedItems, setDisplayedItems] = useState<SearchResult[]>(initialNavItems);
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  const router = useRouter();
 
   const allDocs: NavItem[] = useMemo(() => {
     const allItems = [
@@ -42,20 +55,21 @@ export default function DocSearch({ className, spanClassName }: { className?: st
     return flattenNavItems(allItems);
   }, []);
 
-  // Perform search synchronously on query change
+  // Perform search and update displayed items
   useEffect(() => {
     if (query.length > 0) {
       const filteredResults = allDocs.filter((item) =>
         item.title.toLowerCase().includes(query.toLowerCase()) ||
         item.url.toLowerCase().includes(query.toLowerCase())
       );
-      setResults(filteredResults);
+      setDisplayedItems(filteredResults);
     } else {
-      setResults([]);
+      setDisplayedItems(initialNavItems);
     }
+    setSelectedIndex(0);
   }, [query, allDocs]);
 
-  // Handle keyboard shortcuts
+  // Handle keyboard shortcuts for opening/closing
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key === "k") {
@@ -75,12 +89,23 @@ export default function DocSearch({ className, spanClassName }: { className?: st
   // Auto-focus input when dialog opens
   useEffect(() => {
     if (isOpen) {
-      // No timeout needed here, but a small delay can prevent focus issues
       setTimeout(() => {
         inputRef.current?.focus();
       }, 100);
     }
   }, [isOpen]);
+
+  // Scroll to selected item
+  useEffect(() => {
+    if (isOpen && displayedItems.length > 0 && listRef.current) {
+        const itemElement = listRef.current.children[selectedIndex] as HTMLLIElement;
+        if (itemElement) {
+            itemElement.scrollIntoView({
+                block: 'nearest',
+            });
+        }
+    }
+  }, [selectedIndex, isOpen, displayedItems]);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -89,7 +114,7 @@ export default function DocSearch({ className, spanClassName }: { className?: st
   const handleClose = () => {
     setIsOpen(false);
     setQuery("");
-    setResults([]);
+    setSelectedIndex(0);
   };
 
   const handleOpenChange = (open: boolean) => {
@@ -102,6 +127,25 @@ export default function DocSearch({ className, spanClassName }: { className?: st
 
   const handleLinkClick = () => {
     handleClose();
+  };
+
+  const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (displayedItems.length === 0) return;
+
+    if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        setSelectedIndex(prev => (prev + 1) % displayedItems.length);
+    } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        setSelectedIndex(prev => (prev - 1 + displayedItems.length) % displayedItems.length);
+    } else if (event.key === 'Enter') {
+        event.preventDefault();
+        const selectedUrl = displayedItems[selectedIndex]?.url;
+        if (selectedUrl) {
+            router.push(selectedUrl);
+            handleClose();
+        }
+    }
   };
 
   return (
@@ -138,6 +182,7 @@ export default function DocSearch({ className, spanClassName }: { className?: st
                 className="pl-12 pr-12 py-4 h-14 rounded-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-base bg-transparent"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleInputKeyDown}
               />
               <DialogClose
                 asChild
@@ -148,31 +193,18 @@ export default function DocSearch({ className, spanClassName }: { className?: st
           </DialogHeader>
 
           <div className="relative">
-            {/* Initial State (no query) */}
-            {query.length === 0 && (
-              <div className="px-4 py-6 text-center">
-                <Search className="mx-auto h-12 w-12 text-muted-foreground/30 mb-4" />
-                <p className="text-sm text-muted-foreground mb-2">
-                  Search through the documentation
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  Start typing to find pages, components, and guides
-                </p>
-              </div>
-            )}
-
             {/* Results List */}
-            {results.length > 0 && (
+            {displayedItems.length > 0 && (
               <div className="max-h-96 overflow-y-auto">
-                <ul className="py-2">
-                  {results.map((item, index) => (
-                    <li key={`${item.url}-${index}`}>
+                <ul ref={listRef} className="py-2">
+                  {displayedItems.map((item, index) => (
+                    <li key={`${item.url}-${index}`} className={cn(index === selectedIndex && "bg-accent")}>
                       <Link
                         href={item.url}
                         prefetch={true}
                         className="flex flex-col gap-1 px-4 py-3 text-sm hover:bg-accent hover:text-accent-foreground transition-colors duration-150 focus:bg-accent focus:text-accent-foreground focus:outline-none border-l-2 border-l-transparent hover:border-l-primary/50"
                         onClick={handleLinkClick}
-                        tabIndex={0}
+                        tabIndex={-1}
                       >
                         <span className="font-medium text-foreground">
                           {item.title}
@@ -188,7 +220,7 @@ export default function DocSearch({ className, spanClassName }: { className?: st
             )}
 
             {/* No Results State */}
-            {query.length > 0 && results.length === 0 && (
+            {query.length > 0 && displayedItems.length === 0 && (
               <div className="px-4 py-8 text-center">
                 <div className="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
                   <Search className="h-6 w-6 text-muted-foreground" />
