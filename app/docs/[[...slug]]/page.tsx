@@ -1,8 +1,7 @@
-import { LinkCard } from "../client-components/LinkCard";
-import { buildingYourApplicationItems, guidesItems, apiReferenceItems, architectureItems, communityItems } from "../types/nav-data";
-import { NavItem } from "../types/nav";
+import { LinkCard } from "../(_shared)/client-components/LinkCard";
+import { buildingYourApplicationItems, guidesItems, apiReferenceItems, architectureItems, communityItems } from "../(_shared)/types/nav-data";
+import { NavItem } from "../(_shared)/types/nav";
 import { notFound } from "next/navigation";
-import { RouteHandlersPage } from "./(preview)/(file-system-conventions)/route-js/server-components/RouteJS";
 
 export async function generateStaticParams() {
   const allNavItems: NavItem[] = [
@@ -28,11 +27,6 @@ export async function generateStaticParams() {
 
       if (item.items) {
         paths = paths.concat(getAllSlugs(item.items));
-      } else {
-        // If it's a leaf node, add the /architecture, /codebase, and /preview sub-paths
-        paths.push({ slug: [...slug, 'architecture'] });
-        paths.push({ slug: [...slug, 'codebase'] });
-        paths.push({ slug: [...slug, 'preview'] });
       }
     }
     return paths;
@@ -99,53 +93,6 @@ export default async function DocsPage({ params }: { params: Promise<{ slug?: st
   }
 
   if (!activeItem) {
-    // Handle /architecture, /codebase, /preview pages
-    const lastSegment = slug[slug.length - 1];
-    const isSpecialPage = ['architecture', 'codebase', 'preview'].includes(lastSegment);
-
-    if (isSpecialPage) {
-      const basePath = ['/docs', ...slug.slice(0, -1)].join('/');
-      const baseItem = findNavItem(allNavItems, basePath);
-
-      if (baseItem) {
-        const pageTitle = `${baseItem.title} - ${lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1)}`;
-        
-        // Conditionally render the RouteHandlersPage for the specific preview
-        if (basePath === '/docs/api-reference/file-conventions/route-js' && lastSegment === 'preview') {
-          return (
-            <article className="prose dark:prose-invert max-w-none">
-              <header className="mb-8">
-                <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                  {pageTitle}
-                </h1>
-                <p className="mt-4 text-lg text-muted-foreground">
-                  This page demonstrates the usage of Route Handlers in Next.js. Explore the interactive examples below to see how different rendering modes and cookie management work.
-                </p>
-              </header>
-              <RouteHandlersPage />
-            </article>
-          );
-        }
-        
-        const pageDescription = `Content related to the ${lastSegment} of ${baseItem.title}.`;
-        return (
-          <article className="prose dark:prose-invert max-w-none">
-            <header className="mb-8">
-              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                {pageTitle}
-              </h1>
-              <p className="mt-4 text-lg text-muted-foreground">
-                {pageDescription}
-              </p>
-            </header>
-            <div className="mt-8">
-              <p>This is a placeholder page for the {lastSegment} section of &quot;{baseItem.title}&quot;.</p>
-              <p>More detailed content will be added here.</p>
-            </div>
-          </article>
-        );
-      }
-    }
     return (
       notFound()
     );
@@ -186,31 +133,7 @@ export default async function DocsPage({ params }: { params: Promise<{ slug?: st
         </div>
       )}
 
-      {subItems.length === 0 && activeItem.url !== "/docs" && (
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <LinkCard
-            item={{
-              title: "Architecture",
-              url: `${currentPath}/architecture`,
-              description: `Learn about the architecture of ${activeItem.title}.`,
-            }}
-          />
-          <LinkCard
-            item={{
-              title: "Codebase",
-              url: `${currentPath}/codebase`,
-              description: `Explore the codebase related to ${activeItem.title}.`,
-            }}
-          />
-          <LinkCard
-            item={{
-              title: "Preview",
-              url: `${currentPath}/preview`,
-              description: `See a live preview or example of ${activeItem.title}.`,
-            }}
-          />
-        </div>
-      )}
+    
     </article>
   );
 }

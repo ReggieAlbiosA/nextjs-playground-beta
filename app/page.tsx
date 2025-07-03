@@ -1,4 +1,4 @@
-import Link from "next/link";
+import HoverPrefetchLink from "@/components/ui/hover-prefetch-link";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -33,19 +33,19 @@ export default function Home() {
             </div>
             <div className="space-x-4">
               <Button asChild size="lg">
-                <Link href="/docs">
+                <HoverPrefetchLink href="/docs">
                   Get Started
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
+                </HoverPrefetchLink>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link
+                <HoverPrefetchLink
                   rel="noopener noreferrer"
                   target="_blank"
                   href="https://github.com/ReggieAlbiosA/nextjs-playground-beta"
                 >
                   GitHub
-                </Link>
+                </HoverPrefetchLink>
               </Button>
             </div>
           </div>
@@ -123,12 +123,12 @@ export default function Home() {
                 <h3 className="text-lg font-bold">Layouts</h3>
               </div>
               <p className="text-sm text-muted-foreground">
-                Create shared UI that persists between routes, preserving
+                Create shared UI   that persists between routes, preserving
                 state and avoiding re-renders.
               </p>
             </li>
             <li className="grid gap-2">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3"> 
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
                   <Wind className="h-5 w-5 text-primary" />
                 </div>
@@ -157,7 +157,7 @@ export default function Home() {
           </div>
           <div className="mx-auto w-full max-w-sm space-y-2">
             <Button asChild size="lg">
-              <Link href="/docs" prefetch={true}>Browse Documentation</Link>
+              <HoverPrefetchLink href="/docs">Browse Documentation</HoverPrefetchLink>
             </Button>
           </div>
         </div>

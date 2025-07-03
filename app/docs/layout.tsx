@@ -1,14 +1,14 @@
-import { DocsSidebar } from "./server-components/DocsSideBar";
-import { MobileDocsSidebar } from "./client-components/MobileDocsSideBar";
+import { DocsSidebar } from "./(_shared)/server-components/DocsSideBar";
+import { MobileDocsSidebar } from "./(_shared)/client-components/MobileDocsSideBar";
 
 export const metadata = {
   title: "Documentation - Next.js Playground",
   description: "Comprehensive Next.js documentation and guides",
 };
 
-import { NonCollapsibleNavSection } from "./client-components/NonCollapsibleNavSection"; // Renamed import
-import { CollapsibleNavSection } from "./client-components/CollapsibleNavSection";
-import { buildingYourApplicationItems, apiReferenceItems, guidesItems, architectureItems, communityItems } from "./types/nav-data";
+import { NonCollapsibleNavSection } from "./(_shared)/client-components/NonCollapsibleNavSection";
+import { CollapsibleNavSection } from "./(_shared)/client-components/CollapsibleNavSection";
+import { buildingYourApplicationItems, apiReferenceItems, guidesItems, architectureItems, communityItems } from "./(_shared)/types/nav-data";
 
 import { BookOpen } from "lucide-react";
 
@@ -28,16 +28,8 @@ export default function DocsLayout({
       <NonCollapsibleNavSection title="Architecture" items={architectureItems} />
       <NonCollapsibleNavSection title="Community" items={communityItems} />
     </>
-  );
-
-  // The mobile sidebar needs a way to close itself when a link is clicked.
-  // We can't easily pass the 'closeMenu' function through the `children` prop
-  // from the MobileDocsSidebar to the NavItemRenderer.
-  // A more advanced solution would use React Context to provide the `closeMenu` function.
-  // For simplicity, the `NavItemRenderer` handles its own state, and the user
-  // can click the overlay to close the mobile menu. The provided solution prioritizes
-  // the server-rendering aspect of your request.
-
+  )
+  
   return (
     <div className="flex">
       <DocsSidebar>
@@ -52,10 +44,9 @@ export default function DocsLayout({
         </div>
         
         <main className="md:ml-64">
-          <article className="container mx-auto px-4 py-8">
             {children}
-          </article>
         </main>
+
       </div>
     </div>
   );

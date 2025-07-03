@@ -23,7 +23,7 @@ const TOKEN_VALUE = 'test-token-123'; // A fixed value for demonstration
  * isAuthenticated:
  * type: boolean
  */
-export async function GET(_request: NextRequest) {
+export async function GET(_request: NextRequest) { // _request is intentionally unused
   const cookieStore = await cookies();
   const token = cookieStore.get(TOKEN_NAME);
 
@@ -51,7 +51,7 @@ export async function GET(_request: NextRequest) {
  * message:
  * type: string
  */
-export async function POST(_request: NextRequest) {
+export async function POST(_request: NextRequest) { // _request is intentionally unused
   const cookieStore = await cookies();
 
   // Set the cookie
@@ -83,7 +83,7 @@ export async function POST(_request: NextRequest) {
  * message:
  * type: string
  */
-export async function DELETE(_request: NextRequest) {
+export async function DELETE(_request: NextRequest) { // _request is intentionally unused
   const cookieStore = await cookies();
 
   // Delete the cookie
