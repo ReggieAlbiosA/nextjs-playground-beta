@@ -1,103 +1,167 @@
-import Image from "next/image";
+import HoverPrefetchLink from "@/components/ui/hover-prefetch-link";
+import { Button } from "@/components/ui/button";
+import {
+  ArrowRight,
+  Blocks,
+  Component,
+  Database,
+  FileCode,
+  Server,
+  Wind,
+} from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="flex-1">
+      {/* Hero Section */}
+      <section className="relative grid place-items-center w-full min-h-[800px]  py-20 md:py-32 lg:py-40">
+        {/* Grid/dot background */}
+        <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+        {/* Radial gradient */}
+        <div className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 h-[310px] w-[510px] rounded-full bg-blue-500/20 dark:bg-blue-500/10 opacity-50 blur-[75px]"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center space-y-6 text-center">
+            <div className="space-y-3">
+              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none">
+                Next.js Playground
+              </h1>
+              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
+                A hands-on environment to explore the latest features of the App
+                Router. Built for developers, by a developer.
+              </p>
+            </div>
+            <div className="space-x-4">
+              <Button asChild size="lg">
+                <HoverPrefetchLink href="/docs">
+                  Get Started
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </HoverPrefetchLink>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <a
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href="https://github.com/ReggieAlbiosA/nextjs-playground-beta"
+                >
+                  GitHub
+                </a>
+              </Button>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="w-full py-12 grid place-items-center md:py-24 lg:py-32 bg-muted/20 dark:bg-muted/10">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">
+                Key Features
+              </div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+                Built on the App Router
+              </h2>
+              <p className="max-w-[900px] text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed">
+                This playground is designed to demonstrate the core concepts and new primitives introduced in the Next.js App Router.
+              </p>
+          </div>
+          <ul className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:grid-cols-3 lg:gap-12">
+            <li className="grid gap-2">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <Server className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold">Server Components</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Render components on the server for faster initial loads and
+                less client-side JavaScript.
+              </p>
+            </li>
+            <li className="grid gap-2">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <Component className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold">Client Components</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Enable interactivity and state management on the client with
+                the &quot;use client&quot; directive.
+              </p>
+            </li>
+            <li className="grid gap-2">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <Database className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold">Data Fetching</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Simplified data fetching with async/await in Server
+                Components, with built-in caching.
+              </p>
+            </li>
+            <li className="grid gap-2">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <FileCode className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold">File-based Routing</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Organize your application with a clear and intuitive
+                file-system based routing system.
+              </p>
+            </li>
+            <li className="grid gap-2">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <Blocks className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold">Layouts</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Create shared UI   that persists between routes, preserving
+                state and avoiding re-renders.
+              </p>
+            </li>
+            <li className="grid gap-2">
+              <div className="flex items-center gap-3"> 
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <Wind className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold">Theming & Styling</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Styled with Tailwind CSS and includes a light/dark mode theme
+                switcher.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="w-full py-12 md:py-24  grid place-items-center lg:py-32 border-t">
+        <div className="container r gap-4 px-4 text-center md:px-6">
+          <div className="space-y-3">
+            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+              Ready to Dive In?
+            </h2>
+            <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              Explore the documentation to see how each feature is implemented
+              and start experimenting on your own.
+            </p>
+          </div>
+          <div className="mx-auto w-full max-w-sm space-y-2">
+            <Button asChild size="lg">
+              <HoverPrefetchLink href="/docs">Browse Documentation</HoverPrefetchLink>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
