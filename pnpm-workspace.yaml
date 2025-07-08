@@ -1,4 +1,5 @@
 onlyBuiltDependencies:
+  - '@anthropic-ai/claude-code'
   - '@tailwindcss/oxide'
   - sharp
   - unrs-resolver
