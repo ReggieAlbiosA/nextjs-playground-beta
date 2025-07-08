@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+
 import { NavItem } from "../types/nav";
 import { ArrowRight } from "lucide-react";
 import HoverPrefetchLink from "@/components/ui/hover-prefetch-link";

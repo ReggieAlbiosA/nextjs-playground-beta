@@ -17,7 +17,7 @@ export default function ErrorJsPreviewLayout({
                 </div>
               }
               architecture={null}
-              codebase={null}
+              codebaseLink="#"
               >
       </Article>
   );

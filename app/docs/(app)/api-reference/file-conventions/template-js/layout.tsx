@@ -56,7 +56,7 @@ export default function TemplateJsPreviewLayout({
                       
               } 
               architecture={null} 
-              codebase={null}>
+              codebaseLink="#">
   
   </Article>
     

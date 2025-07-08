@@ -1,5 +1,6 @@
 import Articles from './articles.mdx';
 import { ComponentProps, ReactNode } from 'react';
+import Image from 'next/image';
 
 // Define styled components that will override the default HTML tags
 interface WrapperProps {
@@ -32,7 +33,7 @@ const overrideComponents: {
         <a className="inline-block bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-md transition-colors" {...props} />
     ),
     img: (props: ComponentProps<'img'>) => (
-        <img className="w-full h-auto object-cover rounded-lg shadow-md aspect-[4/3]" {...props} />
+        <Image className="w-full h-auto object-cover rounded-lg shadow-md aspect-[4/3]" src={props.src as string} alt={props.alt || ""} width={400} height={300} />
     ),
     article: (props: ComponentProps<'article'>) => (
         <article className="flex flex-col md:flex-row items-center gap-8 md:gap-16" {...props} />

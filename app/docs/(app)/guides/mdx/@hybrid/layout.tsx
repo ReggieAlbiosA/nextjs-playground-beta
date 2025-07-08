@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 Hybrid Setup: MDX + TSX
             </CardTitle>
             <CardDescription className="text-muted-foreground">
-                This page uses a hybrid rendering approach — the layout and logic are defined in <code> page.tsx</code>, while the content is imported from an MDX file. This enables a clean separation between UI structure and rich Markdown-driven content. It offers the flexibility of TSX for layouts, while still benefiting from MDX's readable syntax and component embedding. However, MDX still carries some limitations like lack of type safety and more fragile debugging compared to raw TSX.
+                This page uses a hybrid rendering approach — the layout and logic are defined in <code> page.tsx</code>, while the content is imported from an MDX file. This enables a clean separation between UI structure and rich Markdown-driven content. It offers the flexibility of TSX for layouts, while still benefiting from MDX&apos;s readable syntax and component embedding. However, MDX still carries some limitations like lack of type safety and more fragile debugging compared to raw TSX.
             </CardDescription>
         </CardHeader> 
 

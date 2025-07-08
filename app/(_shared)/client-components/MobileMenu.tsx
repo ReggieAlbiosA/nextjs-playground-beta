@@ -2,9 +2,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import { BookText, Github, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button"; // Assuming you have a UI library like shadcn/ui
+import HoverPrefetchLink from "@/components/ui/hover-prefetch-link"; // Custom link component for prefetching
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,22 +41,20 @@ export default function MobileMenu() {
       {isOpen && (
         <div className="absolute overflow-y-auto h-[calc(100vh-64px)] top-16 inset-x-0 z-50 bg-background border-b">
           <nav className="w-full flex flex-col justify-center primary-bg">
-            <Link
+            <HoverPrefetchLink
               href="/"
-              prefetch
               className="py-2 px-5 text-sm transition-colors hover:text-foreground/80"
             >
               xlore_
-            </Link>
+            </HoverPrefetchLink>
             <hr className="w-full h-px my-2 border-t border-border" />
-            <Link
+            <HoverPrefetchLink
               href="/docs"
-              prefetch
               className="flex items-center gap-1.5 py-2 px-5 text-sm transition-colors hover:text-foreground/80"
             >
               <BookText size={16} />
               <span>Docs</span>
-            </Link>
+            </HoverPrefetchLink>
             <hr className="w-full h-px my-2 border-t border-border" />
             <a
               rel="noopener noreferrer"

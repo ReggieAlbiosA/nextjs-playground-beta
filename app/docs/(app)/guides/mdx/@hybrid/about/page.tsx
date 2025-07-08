@@ -8,7 +8,7 @@ export default function AboutPage() {
           About This Blog
         </CardTitle>
         <CardDescription className="text-muted-foreground">
-          This is an example "About" page for the hybrid MDX + TSX setup. It demonstrates how you can easily add static content pages within your Next.js application, leveraging the existing layout and styling.
+          This is an example &quot;About&quot; page for the hybrid MDX + TSX setup. It demonstrates how you can easily add static content pages within your Next.js application, leveraging the existing layout and styling.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6 flex-1">

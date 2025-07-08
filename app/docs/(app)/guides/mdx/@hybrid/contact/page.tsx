@@ -8,7 +8,7 @@ export default function ContactPage() {
  Contact Us
  </CardTitle>
  <CardDescription className="text-muted-foreground">
- This is an example "Contact" page for the hybrid MDX + TSX setup. Feel free to reach out to us!
+ This is an example &quot;Contact&quot; page for the hybrid MDX + TSX setup. Feel free to reach out to us!
  </CardDescription>
  </CardHeader>
  <CardContent className="space-y-6 flex-1">

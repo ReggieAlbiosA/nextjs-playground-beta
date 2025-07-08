@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 // * next imports
-import Link from "next/link";
+
 import { headers, cookies } from 'next/headers';
 import Script from "next/script";
 import HoverPrefetchLink from "@/components/ui/hover-prefetch-link";

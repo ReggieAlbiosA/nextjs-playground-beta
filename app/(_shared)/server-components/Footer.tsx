@@ -1,6 +1,6 @@
 // /home/anon/Documents/WebDev/nextjs-playground-beta/app/server-components/Footer.tsx
 
-import Link from "next/link";
+import HoverPrefetchLink from "@/components/ui/hover-prefetch-link";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -23,9 +23,9 @@ export default function Footer() {
           </a>
         </p>
         <nav className="flex justify-center space-x-4 mt-4" aria-label="Footer navigation">
-          <Link href="/docs" prefetch={true} className="text-sm hover:text-foreground/80">
+          <HoverPrefetchLink href="/docs" className="text-sm hover:text-foreground/80">
             Docs
-          </Link>
+          </HoverPrefetchLink>
           <a
             href="https://github.com/ReggieAlbiosA/nextjs-playground-beta"
             target="_blank"
