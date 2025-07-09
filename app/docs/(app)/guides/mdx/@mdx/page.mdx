@@ -1,69 +1,59 @@
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Code } from 'bright';
 
-<Card style={{ display: 'flex', flexDirection: 'column' }}>
-  <CardHeader>
-    ## With MDX - page.mdx
-
-    This page is rendered using standard MDX syntax...
-  </CardHeader>
-
-  <CardContent style={{ 
-    maxWidth: 'none', 
-    backgroundColor: 'var(--card)', 
-    color: 'var(--card-foreground)', 
-    display: 'flex', 
-    flexDirection: 'column', 
-    gap: '1.5rem', 
-    marginLeft: '1.5rem', 
-    marginRight: '1.5rem', 
-    borderRadius: '0.75rem', 
-    border: '1px solid var(--border)', 
-    padding: '1.5rem', 
-    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)' 
-  }}>
-    ## File-System Based Routings
-
-    Next.js uses a file-system based router. The App Router, introduced in Next.js 13, builds upon this concept.
-
-    - `app/page.tsx` corresponds to the `/` route.
-    - `app/about/page.tsx` corresponds to the `/about` route.
-
-    ### Dynamic Routes
-
-    To create a dynamic route, you use brackets in the folder name.
-
-    Here is an example of how to access the slug parameter:
-
-    ```tsx
-    // app/blog/[slug]/page.tsx
-    export default function Page({ params }: { params: { slug: string } }) {
-      return <div>My Post: {params.slug}</div>
-    }
-    ```
+<Card className="flex flex-col">
+    <CardHeader>
+      ## With MDX - page.mdx
+     
+      This page is rendered using standard MDX syntax, making it ideal for content-rich documentation like routing guides. MDX allows you to write Markdown for structure and clarity while embedding interactive components such as code examples. However, it does come with trade-offs — type safety is limited, runtime errors can be harder to debug due to vague messages, and features like syntax highlighting require external configuration. Still, for content-first experiences with light interactivity, MDX provides an efficient and clean balance between developer control and editorial productivity.
     
-    ### Layouts
+    </CardHeader>
+    <CardContent className="prose prose-invert bg-card text-card-foreground flex mx-6 flex-col gap-6 rounded-xl border py-6 shadow-sm">
+        ## File-System Based Routings
 
-    Layouts are used to share UI between multiple pages.
+        Next.js uses a file-system based router. The App Router, introduced in Next.js 13, builds upon this concept.
 
-    ```tsx
-    // app/dashboard/layout.tsx
-    export default function DashboardLayout({
-      children,
-    }: {
-      children: React.ReactNode
-    }) {
-      return (
-        <section>
-          <nav>Dashboard Nav</nav>
-          {children}
-        </section>
-      )
-    }
-    ```
+        -   `app/page.tsx` corresponds to the `/` route.
+        -   `app/about/page.tsx` corresponds to the `/about` route.
 
-    ### Conclusion
+        ### Dynamic Routes  
 
-    The Next.js App Router provides a powerful and intuitive way to structure your application's routes.
-  </CardContent>
+        To create a dynamic route, you use brackets in the folder name. For example, `app/blog/[slug]/page.tsx` will match routes like `/blog/hello-world` or `/blog/another-post`. The `slug` parameter will be available in your component.
+
+        Here is an example of how to access the slug parameter:
+
+        ```tsx
+        // app/blog/[slug]/page.tsx
+        export default function Page({ params }: { params: { slug: string } }) {
+          return <div>My Post: {params.slug}</div>
+        }
+        ```
+
+        ### Layouts
+
+        Layouts are used to share UI between multiple pages. A layout in a directory applies to all pages within that directory and its subdirectories. For example, `app/dashboard/layout.tsx` would be a layout for all pages under `/dashboard`.
+
+        ```tsx
+        // app/dashboard/layout.tsx
+        export default function DashboardLayout({
+          children,
+        }: {
+          children: React.ReactNode
+        }) {
+          return (
+            <section>
+              {/* Include shared UI here e.g. a header or sidebar */}
+              <nav>Dashboard Nav</nav>
+
+              {children}
+            </section>
+          )
+        }
+        ```
+
+        ### Conclusion
+
+        The Next.js App Router provides a powerful and intuitive way to structure your application's routes. By understanding file conventions for pages, layouts, and dynamic routes, you can build complex applications with ease.
+
+    </CardContent>
 </Card>

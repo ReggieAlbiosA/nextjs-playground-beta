@@ -6,6 +6,23 @@ import {
 } from "@/components/ui/tabs";
 import { Eye, Code, Ruler } from "lucide-react";
 import React from "react";
+import { ComboboxLayout } from "../client/Combobox";
+// import { cn } from "@/lib/utils"
+// import { Button } from "@/components/ui/button"
+// import {
+//   Command,
+//   CommandEmpty,
+//   CommandGroup,
+//   CommandInput,
+//   CommandItem,
+//   CommandList,
+// } from "@/components/ui/command"
+// import {
+//   Popover,
+//   PopoverContent,
+//   PopoverTrigger,
+// } from "@/components/ui/popover"
+
 
 interface ArticleProps {
     title: string;
@@ -29,7 +46,7 @@ export function Article({ title, description, preview, architecture, codebaseLin
             </header>
 
             <div className="mt-10 not-prose">
-                <Tabs defaultValue="preview" className="flex flex-col gap-y-2">
+                <Tabs defaultValue="preview" className="lg:flex  flex-col gap-y-2 hidden">
                     <div className="flex items-center justify-between">
                         <TabsList className="bg-transparent gap-x-4">
                             
@@ -70,8 +87,9 @@ export function Article({ title, description, preview, architecture, codebaseLin
                     <TabsContent value="architecture">
                         {architecture}
                     </TabsContent>
-                    
                 </Tabs>
+
+                <ComboboxLayout></ComboboxLayout>
             </div>
         </article>
     );

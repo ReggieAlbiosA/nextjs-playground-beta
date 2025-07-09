@@ -12,7 +12,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
   }, [error]);
 
   return (
-    <Card className="bg-destructive/10 border-destructive/50 shadow-lg h-[800px]">
+    <Card className="bg-destructive/10 border-destructive/50 shadow-lg h-auto">
       <CardHeader className="flex flex-row items-center gap-4 pb-4">
         <div className="flex items-center justify-center w-12 h-12 rounded-full bg-destructive/20">
             <AlertTriangle className="w-6 h-6 text-destructive" />

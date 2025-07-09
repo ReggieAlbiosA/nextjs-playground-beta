@@ -22,7 +22,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         </CardHeader>
         <CardContent className="space-y-4">
           <Counter />
-          <div className="flex space-x-4">
+          <div className="flex flex-wrap gap-4">
             <Button asChild>
               <Link href="/docs/api-reference/file-conventions/template-js/page1">
                 Go to Page 1

@@ -83,7 +83,7 @@ export default async function DocsPage({ params }: { params: Promise<{ slug?: st
   // Handle the root /docs page explicitly, as it has no entry in nav-data
   if (slug.length === 0) {
     return (
-      <div className="prose dark:prose-invert max-w-none">
+      <div className="px-6 py-8 prose dark:prose-invert max-w-none">
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Documentation</h1>
         <p className="mt-4 text-lg text-muted-foreground">
           Welcome to the Next.js Playground documentation. Explore the sections below to learn about the latest features of the App Router.
@@ -113,7 +113,7 @@ export default async function DocsPage({ params }: { params: Promise<{ slug?: st
   }
 
   return (
-    <article className="prose dark:prose-invert max-w-none">
+    <article className="prose px-6 py-8 dark:prose-invert max-w-none">
       <header className="mb-8">
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           {activeItem.title}

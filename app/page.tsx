@@ -39,7 +39,7 @@ export default function Home() {
                 </HoverPrefetchLink>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <a
+            <a
                   rel="noopener noreferrer"
                   target="_blank"
                   href="https://github.com/ReggieAlbiosA/nextjs-playground-beta"

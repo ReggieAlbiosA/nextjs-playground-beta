@@ -77,16 +77,16 @@ export default function ImageUploadDemo() {
   }
 
   return (
-    <Card className="bg-background/50 h-[800px]">
+    <Card className="bg-background/50 h-auto">
       <CardHeader>
         <CardTitle>Client-Side Error - Expected Error</CardTitle>
         <CardDescription>
           This component demonstrates how to handle client-side validation. Try uploading a non-image file or an image larger than 100KB to see the conditional error message.
         </CardDescription>
       </CardHeader>
-      <CardContent className='h-full'>
+      <CardContent className='h-auto'>
         <div 
-            className={`relative flex flex-col items-center justify-center w-full p-8 border-2 border-dashed h-full rounded-lg transition-colors ${dragActive ? 'border-primary bg-primary/10' : 'border-border'} ${error ? 'border-destructive' : ''}`}
+            className={`relative flex flex-col items-center justify-center w-full p-8 border-2 border-dashed h-[500px] rounded-lg transition-colors ${dragActive ? 'border-primary bg-primary/10' : 'border-border'} ${error ? 'border-destructive' : ''}`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
             onDragOver={handleDrag}

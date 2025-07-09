@@ -12,9 +12,10 @@ interface NavItemRendererProps {
   item: NavItem;
   level?: number;
   onLinkClick?: () => void; // Optional callback to close mobile menu
+  hasTreeLine?: boolean;
 }
 
-export function NavItemRenderer({ item, level = 0, onLinkClick }: NavItemRendererProps) {
+export function NavItemRenderer({ item, level = 0, onLinkClick, hasTreeLine = false }: NavItemRendererProps) {
   const pathname = usePathname();
   const hasChildren = item.items && item.items.length > 0;
 
@@ -59,15 +60,16 @@ export function NavItemRenderer({ item, level = 0, onLinkClick }: NavItemRendere
   };
 
   return (
-    <li className={cn(level > 0 && "pl-4")}>
+    <li className={cn("relative", !hasTreeLine && level > 0 && "pl-4")}>
+      {hasTreeLine && <div className="absolute -left-4 top-3 h-px w-3 bg-border/80" />}
       <Link
         href={item.url}
         prefetch={true}
         onClick={handleClick}
         className={cn(
-          "flex w-full items-center justify-between rounded-md pl-2 pr-4 py-0.5 text-sm ",
-          "duration-50 ease-in  max-w-max hover:opacity-80",
-          (isActive || (isParentActive && !isExpanded)) && "text-blue-600 dark:text-blue-400 font-medium hover:opacity-100 "
+          "flex w-full items-center justify-between rounded-md pl-2 pr-4 py-1 text-sm",
+          "duration-50 ease-in max-w-max hover:opacity-80",
+          (isActive || (isParentActive && !isExpanded)) && "text-blue-600 dark:text-blue-400 font-medium hover:opacity-100"
         )}
         aria-current={isActive ? "page" : undefined}
         aria-expanded={hasChildren ? isExpanded : undefined}
@@ -78,21 +80,21 @@ export function NavItemRenderer({ item, level = 0, onLinkClick }: NavItemRendere
         </span>
 
         {hasChildren && (
-          // The chevron is now just a visual indicator inside the link
           <span className="ml-2">
-             {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+            {isExpanded ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
           </span>
         )}
       </Link>
 
       {hasChildren && isExpanded && (
-        <ul className="mt-1 space-y-1">
+        <ul className={cn("mt-1 space-y-1", hasTreeLine && "relative border-l ml-3 pl-4 py-1 border-border/50")}>
           {item.items!.map(subItem => (
             <NavItemRenderer 
               key={subItem.url} 
               item={subItem} 
               level={level + 1}
               onLinkClick={onLinkClick}
+              hasTreeLine={hasTreeLine}
             />
           ))}
         </ul>

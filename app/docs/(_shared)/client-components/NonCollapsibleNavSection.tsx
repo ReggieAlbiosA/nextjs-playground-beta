@@ -29,12 +29,13 @@ export function NonCollapsibleNavSection({ title, items, onLinkClick }: NonColla
           {title}
         </h2>
       </HoverPrefetchLink>
-      <ul className="space-y-1">
+      <ul className="relative ml-3 pl-4 border-l border-border/80 py-3 space-y-1">
         {items.map(item => (
           <NavItemRenderer
             key={item.url}
             item={item}
             onLinkClick={onLinkClick}
+            hasTreeLine={true}
           />
         ))}
       </ul>

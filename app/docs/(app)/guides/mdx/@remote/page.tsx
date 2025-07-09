@@ -18,7 +18,7 @@ export default async function RemoteDocsPage() {
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="prose prose-invert bg-card text-card-foreground flex mx-6 flex-col gap-6 rounded-xl border py-6 shadow-smo">
+      <CardContent className="prose prose-invert bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm mx-2 sm:mx-4 md:mx-6">
        <MDXRemote source={markdown} />
       </CardContent>
     </Card>

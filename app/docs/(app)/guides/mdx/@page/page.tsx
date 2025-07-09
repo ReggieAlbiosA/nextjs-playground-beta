@@ -107,7 +107,7 @@ export default function PhotoEditor() {
       <CardContent className="space-y-6 flex-1 over low-y-auto">
         {!imageSrc ? (
           <div
-            className="flex flex-col items-center justify-center w-full h-[500px] p-8 border-2 border-dashed rounded-lg cursor-pointer transition-colors hover:border-primary hover:bg-primary/5"
+            className="flex flex-col items-center justify-center w-full h-[300px] sm:h-[400px] md:h-[500px] p-8 border-2 border-dashed rounded-lg cursor-pointer transition-colors hover:border-primary hover:bg-primary/5"
             onClick={() => fileInputRef.current?.click()}
           >
             <UploadCloud className="w-12 h-12 text-muted-foreground mb-4" />

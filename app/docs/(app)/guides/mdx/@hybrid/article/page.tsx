@@ -18,10 +18,10 @@ const overrideComponents: {
     wrapper: (props: WrapperProps) => React.ReactElement;
 } = {
     h1: (props: ComponentProps<'h1'>) => (
-        <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-12" {...props} />
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight text-center mb-12" {...props} />
     ),
     h2: (props: ComponentProps<'h2'>) => (
-        <h2 className="text-3xl font-bold text-gray-800 mb-4 leading-tight" {...props} />
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 leading-tight" {...props} />
     ),
     h4: (props: ComponentProps<'h4'>) => (
         <h4 className="text-sm text-gray-500 mb-2" {...props} />

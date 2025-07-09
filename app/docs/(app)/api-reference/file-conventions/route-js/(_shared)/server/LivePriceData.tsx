@@ -127,9 +127,9 @@ export default function LivePriceDataPage() {
                 </div>
 
                 {/* Right side: Prices */}
-                <div className="flex items-center justify-center gap-6 lg:justify-end">
+                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-center lg:justify-end gap-6">
                   {/* Initial Server-Rendered Value */}
-                  <div className="text-center lg:text-right">
+                  <div className="text-center sm:text-right">
                     <div className="mb-2 text-xs font-medium tracking-wider text-gray-500 uppercase dark:text-gray-400">
                       Initial ({mode.toUpperCase()})
                     </div>
@@ -144,7 +144,7 @@ export default function LivePriceDataPage() {
                   <div className="w-px h-12 bg-gradient-to-b from-transparent via-gray-300/60 dark:via-gray-600/60 to-transparent"></div>
 
                   {/* Live WebSocket Value */}
-                  <div className="text-center lg:text-left">
+                  <div className="text-center sm:text-left">
                     <div className="flex items-center justify-center gap-1 mb-2 text-xs font-medium tracking-wider text-gray-500 uppercase dark:text-gray-400 lg:justify-start">
                       <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                       Live WebSocket

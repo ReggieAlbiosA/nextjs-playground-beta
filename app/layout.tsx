@@ -11,11 +11,14 @@ import HoverPrefetchLink from "@/components/ui/hover-prefetch-link";
 
 // * dependencies
 import { ThemeProvider } from "next-themes";
-import { BookText, Github, Moon, Sun } from "lucide-react";
+import { BookText, Github, Moon, Sun, BookOpen } from "lucide-react";
 
 // * client components
 import ThemeSwitcher from "./(_shared)/client-components/ThemeSwitcher";
-import { ConditionalDocsSearch, ConditionalFooter, ConditionalMobileMenu } from "./(_shared)/client-components/ConditionalRenderedComponent";
+import { ConditionalDocsSearch, ConditionalFooter, ConditionalMobileMenu, ConditionalParentLayoutStyle, ConditionalDocSideBar, ConditionalMobileDocsSidebar } from "./(_shared)/client-components/ConditionalRenderedComponent";
+import { buildingYourApplicationItems, apiReferenceItems, guidesItems, architectureItems, communityItems } from "./docs/(_shared)/types/nav-data";
+import { NonCollapsibleNavSection } from "./docs/(_shared)/client-components/NonCollapsibleNavSection";
+import { CollapsibleNavSection } from "./docs/(_shared)/client-components/CollapsibleNavSection";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,6 +69,16 @@ export default async function RootLayout({
     initialTheme = 'dark';
   }
 
+   const sidebarContent = (
+    <>
+      <NonCollapsibleNavSection title="Getting Started" items={buildingYourApplicationItems} />
+      <CollapsibleNavSection title="Guides" icon={<BookOpen size={16}/>} items={guidesItems} />
+      <NonCollapsibleNavSection title="API Reference" items={apiReferenceItems} />
+      <NonCollapsibleNavSection title="Architecture" items={architectureItems} />
+      <NonCollapsibleNavSection title="Community" items={communityItems} />
+    </>
+  )
+
   return (
     // We pass the resolved theme to the <html> tag to prevent any flicker.
     <html
@@ -75,10 +88,6 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/*
-          This inline script is vital. It runs instantly on the client, before React hydrates,
-          ensuring the theme is correct from the very first paint. It mirrors the server logic.
-        */}
           <Script
           crossOrigin="anonymous"
           src="//unpkg.com/react-scan/dist/auto.global.js-"
@@ -114,47 +123,59 @@ export default async function RootLayout({
           disableTransitionOnChange
           storageKey="app-theme"
         >
-          <header className="sticky top-0  z-1000 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-             {/* ... your header code ... */}
-             <div className="flex items-center justify-between h-16  px-4 mx-auto sm:px-6 lg:px-8">
-               <HoverPrefetchLink href="/" className="text-lg font-bold" aria-label="Next.js Playground Home">
-                 <span className="flex items-center gap-x-2">
-                   <svg version="1.0" className="dark:fill-white fill-black" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 256 256" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><g transform="translate(0,256) scale(0.1,-0.1)" stroke="none"><path d="M1556 2374c-16-9-266-191-555-404-355-262-532-399-546-422-18-30-20-54-23-310-2-153 0-278 5-278 4 0 201 144 436 320 467 349 467 349 518 294 24-25 24-26 27-280l3-254-25-25c-45-45-77-35-206 60-63 47-121 85-129 85-8 0-90-57-182-126-167-125-169-127-169-164 0-52 12-81 50-118 29-29 408-325 488-381 40-28 98-37 143-22 54 18 468 339 504 389l30 44 3 690c3 812 14 735-121 835-46 34-96 67-111 73-39 15-106 12-140-6z"/></g></svg>
-                   <span className="text-[1.2rem] font-bold">Next.js</span>
-                   <span className="text-[1.2rem] font-light">Playground</span>
-                 </span>
-               </HoverPrefetchLink>
+          <ConditionalParentLayoutStyle className="grid grid-rows-[64px_1fr] lg:grid-cols-[300px_1fr] grid-cols-1">
+          
+            <header className="flex items-center justify-between   px-4 mx-auto sm:px-6 lg:px-8 sticky top-0 col-span-2 z-1000 w-full h-16 border-b  bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 
-               <div className="flex items-center gap-2 ">
-                 <nav className="items-center hidden gap-3 md:flex" aria-label="Primary">
-                   <HoverPrefetchLink href="/">xlore_</HoverPrefetchLink>
-                   <div className="w-px h-6 border-l border-border" aria-hidden="true" />
-                   <HoverPrefetchLink href="/docs" className="flex items-center gap-1.5 text-sm transition-colors hover:text-foreground/80 px-2 py-1.5 rounded-md"><BookText size={16} /><span>Docs</span></HoverPrefetchLink>
-                   <div className="w-px h-6 border-l border-border" aria-hidden="true" />
-                   <a rel="noopener noreferrer" target="_blank" href="https://github.com/ReggieAlbiosA/nextjs-playground-beta"  className="flex items-center gap-1.5 text-sm transition-colors hover:text-foreground/80 px-2 py-1.5 rounded-md"><Github size={16} /><span>Github</span></a>
-                   <div className="w-px h-6 border-l border-border" aria-hidden="true" />
-                 </nav>
+                <HoverPrefetchLink href="/" className="text-lg font-bold" aria-label="Next.js Playground Home">
+                  <span className="flex items-center gap-x-2">
+                    <svg version="1.0" className="dark:fill-white fill-black" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 256 256" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><g transform="translate(0,256) scale(0.1,-0.1)" stroke="none"><path d="M1556 2374c-16-9-266-191-555-404-355-262-532-399-546-422-18-30-20-54-23-310-2-153 0-278 5-278 4 0 201 144 436 320 467 349 467 349 518 294 24-25 24-26 27-280l3-254-25-25c-45-45-77-35-206 60-63 47-121 85-129 85-8 0-90-57-182-126-167-125-169-127-169-164 0-52 12-81 50-118 29-29 408-325 488-381 40-28 98-37 143-22 54 18 468 339 504 389l30 44 3 690c3 812 14 735-121 835-46 34-96 67-111 73-39 15-106 12-140-6z"/></g></svg>
+                    <span className="text-[1.2rem] font-bold">Next.js</span>
+                    <span className="text-[1.2rem] font-light">Playground</span>
+                  </span>
+                </HoverPrefetchLink>
 
-                 <ConditionalDocsSearch /> {/* Moved DocSearch here */}
+                <div className="flex items-center gap-2 ">
+                  <nav className="items-center hidden gap-3 md:flex" aria-label="Primary">
+                    <HoverPrefetchLink href="/">xlore_</HoverPrefetchLink>
+                    <div className="w-px h-6 border-l border-border" aria-hidden="true" />
+                    <HoverPrefetchLink href="/docs" className="flex items-center gap-1.5 text-sm transition-colors hover:text-foreground/80 px-2 py-1.5 rounded-md"><BookText size={16} /><span>Docs</span></HoverPrefetchLink>
+                    <div className="w-px h-6 border-l border-border" aria-hidden="true" />
+                    <a rel="noopener noreferrer" target="_blank" href="https://github.com/ReggieAlbiosA/nextjs-playground-beta"  className="flex items-center gap-1.5 text-sm transition-colors hover:text-foreground/80 px-2 py-1.5 rounded-md"><Github size={16} /><span>Github</span></a>
+                    <div className="w-px h-6 border-l border-border" aria-hidden="true" />
+                  </nav>
 
-                 <ThemeSwitcher>
-                   {/* Placeholder for ThemeSwitcher icon */}
-                   {initialTheme === "dark" ? (
-                     <div className="grid place-items-center w-full h-full"><Moon size={16} /></div>
-                   ) : (
-                     <div className="grid place-items-center w-full h-full"><Sun size={16} /></div>
-                   )}
-                 </ThemeSwitcher>
+                  <ConditionalDocsSearch /> {/* Moved DocSearch here */}
 
-                 
-                 {/* Use conditional mobile menu instead of MobileMenu directly */}
-                 <ConditionalMobileMenu />
-               </div>
-             </div>
-          </header>
+                  <ThemeSwitcher>
+                    {/* Placeholder for ThemeSwitcher icon */}
+                    {initialTheme === "dark" ? (
+                      <div className="grid place-items-center w-full h-full"><Moon size={16} /></div>
+                    ) : (
+                      <div className="grid place-items-center w-full h-full"><Sun size={16} /></div>
+                    )}
+                  </ThemeSwitcher>
 
-          <div className="flex-1">{children}</div>
-          <ConditionalFooter /> {/* Moved Footer here */}
+                  
+                  {/* Use conditional mobile menu instead of MobileMenu directly */}
+                  <ConditionalMobileMenu />
+                </div>
+            </header>
+
+                <ConditionalDocSideBar className="sticky top-16">
+                  {sidebarContent}
+                </ConditionalDocSideBar>
+
+            <div className="flex-1">
+                <ConditionalMobileDocsSidebar>
+                  {sidebarContent}
+                </ConditionalMobileDocsSidebar>
+              {children}
+            </div>
+
+            <ConditionalFooter /> {/* Moved Footer here */}
+
+          </ConditionalParentLayoutStyle>
         </ThemeProvider>
       </body>
     </html>

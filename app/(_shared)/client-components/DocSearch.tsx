@@ -17,6 +17,7 @@ import { NavItem } from "@/app/docs/(_shared)/types/nav";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { DialogTitle, DialogTrigger } from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 type SearchResult = NavItem;
 
@@ -43,6 +44,7 @@ export default function DocSearch({ className, spanClassName }: { className?: st
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
 
   const allDocs: NavItem[] = useMemo(() => {
     const allItems = [
@@ -150,12 +152,11 @@ export default function DocSearch({ className, spanClassName }: { className?: st
 
   return (
     <>
-    
       <Dialog open={isOpen} onOpenChange={handleOpenChange}>
         <DialogTrigger asChild className="">
             <Button
                 variant="ghost"
-                className={`relative bg-accent dark:hover:bg-accent/50 h-9 justify-start text-sm text-muted-foreground ${className}`}
+                className={`relative bg-accent dark:hover:bg-accent/50 h-9 justify-start text-sm text-muted-foreground  ${className}`}
                 onClick={handleOpen}
                 >
                 <Search className="mr-2 h-4 w-4" />
@@ -183,6 +184,7 @@ export default function DocSearch({ className, spanClassName }: { className?: st
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleInputKeyDown}
+                
               />
               <DialogClose
                 asChild

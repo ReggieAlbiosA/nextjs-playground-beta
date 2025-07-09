@@ -11,7 +11,7 @@ export default function ErrorJsPreviewLayout({
   return (
       <Article title="Error Handling"
               preview={
-                <div className="flex flex-col gap-y-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   {clientside}
                   {serverside}
                 </div>

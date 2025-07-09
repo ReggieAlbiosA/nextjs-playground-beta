@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
 import { BookText, Github, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DocSearch from "@/app/(_shared)/client-components/DocSearch";
@@ -9,23 +8,43 @@ import HoverPrefetchLink from "@/components/ui/hover-prefetch-link";
 
 interface MobileDocsSidebarProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-export function MobileDocsSidebar({ children }: MobileDocsSidebarProps) {
+export function MobileDocsSidebar({ children, className }: MobileDocsSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Effect to handle body scroll lock
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-    return () => { document.body.style.overflow = 'auto'; };
-  }, [isOpen]); 
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
+  
+  // **NEW**: Effect to handle viewport resize
+  useEffect(() => {
+    const handleResize = () => {
+      // Assuming 'lg' breakpoint is 1024px
+      if (window.innerWidth >= 1024) { 
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup the event listener on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty dependency array ensures this runs only on mount and unmount
+
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <div className="md:hidden !m-0">
-      <div className="flex gap-x-6  px-3">
+    <div className={`lg:hidden block !m-0 ${className}`}>
+      <div className="flex gap-x-6 px-3 justify-between">
         <Button
           variant="ghost"
           size="icon"
@@ -34,13 +53,12 @@ export function MobileDocsSidebar({ children }: MobileDocsSidebarProps) {
         >
           <Menu size={20} />
         </Button>
-
-        <DocSearch className="w-60"/> {/* Moved DocSearch here */}
+        <DocSearch className="w-60" />
       </div>
 
       {isOpen && (
         <>
-          <div 
+          <div
             className="fixed inset-0 h-screen z-40 bg-background/80 backdrop-blur-sm"
             onClick={closeMenu}
           />
@@ -49,7 +67,7 @@ export function MobileDocsSidebar({ children }: MobileDocsSidebarProps) {
             aria-modal="true"
             className="fixed h-screen inset-y-0 left-0 z-1500 w-72 bg-background border-r shadow-lg overflow-y-auto"
           >
-            <div className="flex items-center bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 justify-between h-[69px] px-4 border-b sticky top-0">
+            <div className="flex items-center z-100 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 justify-between h-[69px] px-4 border-b sticky top-0">
               <Button variant="ghost" size="icon" className="ml-auto" onClick={toggleMenu} aria-label="Close menu">
                 <X size={20} />
               </Button>
@@ -57,8 +75,7 @@ export function MobileDocsSidebar({ children }: MobileDocsSidebarProps) {
             
             <div className="p-4">
               <nav className="space-y-6" aria-label="Mobile documentation navigation">
-                {/* Mobile-specific links can still live here */}
-                <ul className="space-y-1">
+                <ul className="space-y-1 block md:hidden">
                   <li>
                     <HoverPrefetchLink href="/" className="flex items-center gap-2 px-3 py-2 text-sm" onClick={closeMenu}>
                       xlore_
@@ -75,14 +92,8 @@ export function MobileDocsSidebar({ children }: MobileDocsSidebarProps) {
                     </a>
                   </li>
                 </ul>
-                <hr className="border-border" />
+                <hr className="border-border block md:hidden" />
                 
-                {/* Here, we render the pre-built navigation sections.
-                  We need to pass the `closeMenu` function to the new NavItemRenderer 
-                  so it can close the menu on leaf node clicks. We can't do that directly 
-                  since children is an opaque data structure. The NavItemRenderer will need
-                  to be updated to handle this.
-                */}
                 {children}
               </nav>
             </div>
