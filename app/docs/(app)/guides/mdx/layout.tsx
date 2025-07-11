@@ -15,12 +15,12 @@ export default function MdxLayout({ page, mdx, hybrid, remote }: { page: React.R
                  }
                  officialDocsLink="https://nextjs.org/docs/app/guides/mdx"
                  preview={
-                     <div className="mt-8 not-pros  e flex flex-col gap-8 items-stretch">
-                        {page}
-                        {mdx}
-                        {hybrid}
-                        {remote}
-                     </div>
+                        <>
+                            {page}
+                            {mdx}
+                            {hybrid}
+                            {remote}
+                        </>
                  }
                 architecture={null}
                 codebaseLink="https://github.com/ReggieAlbiosA/nextjs-playground-beta/tree/docs-dashboard/app/docs/(app)/guides/mdx">
