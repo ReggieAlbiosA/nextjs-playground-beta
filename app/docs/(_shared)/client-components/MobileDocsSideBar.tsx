@@ -53,13 +53,13 @@ export function MobileDocsSidebar({ children, className }: MobileDocsSidebarProp
         >
           <Menu size={20} />
         </Button>
-        <DocSearch className="w-60" />
+        <DocSearch className="w-60 max-[400px]:w-50"/>
       </div>
 
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 h-screen z-40 bg-background/80 backdrop-blur-sm"
+            className="fixed inset-0 h-screen z-40 bg-background/80 backdrop-blur-sm" 
             onClick={closeMenu}
           />
           <aside

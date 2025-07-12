@@ -63,7 +63,7 @@ export function CollapsibleNavSection({ title, icon, items, onLinkClick }: Colla
         href={sectionRootUrl}
         onClick={handleToggle}
         className={cn(
-          "flex items-center justify-between mb-3 px-3 text-sm font-semibold text-foreground/70 hover:text-foreground group",
+          "flex items-center justify-between mb-3 px-3 w-max text-sm font-semibold text-foreground/70 hover:text-foreground group",
           isSectionActive && "text-blue-600 dark:text-blue-400"
         )}
         aria-current={isSectionActive ? "page" : undefined}
