@@ -8,7 +8,7 @@ import { DocsSidebar } from "@/app/docs/(_shared)/server-components/DocsSideBar"
 import { MobileDocsSidebar } from "@/app/docs/(_shared)/client-components/MobileDocsSideBar";
 
 
-export function ConditionalMobileMenu() {
+export function ConditionalMobileMenu() { 
   const pathname = usePathname();
   
   // Don't show the general mobile menu on docs pages

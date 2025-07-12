@@ -1,6 +1,7 @@
 import { cookies, headers } from "next/headers";
 import React from "react";
 import { ArticleContainer } from "../client/ArticleContainer";
+import { CustomBreadcrumb } from "../client/CustomBreadcrumb";
 
 interface ArticleProps {
     title: string;
@@ -15,6 +16,7 @@ interface ArticleProps {
 export async function Article({ title, description, preview, architecture, codebaseLink, officialDocsLink, children }: ArticleProps) {
     const layout = (await cookies()).get('view-settings');
     const pathname = (await headers()).get('x-next-pathname') || '';
+    
 
     let view = 'Preview'; // Default view
     if (layout) {
@@ -31,6 +33,9 @@ export async function Article({ title, description, preview, architecture, codeb
 
     return (
         <article className=" mx-auto px-6 py-8">
+
+            <CustomBreadcrumb pathname={pathname} className=" w-max mb-4" />
+
             <header>
                 <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">{title}</h1>
                 {description && <p className="mt-4 text-lg text-accent-foreground">{description}</p>}

@@ -17,7 +17,6 @@ import { NavItem } from "@/app/docs/(_shared)/types/nav";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { DialogTitle, DialogTrigger } from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
 
 type SearchResult = NavItem;
 
@@ -44,7 +43,6 @@ export default function DocSearch({ className, spanClassName }: { className?: st
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
   const router = useRouter();
-  const pathname = usePathname();
 
   const allDocs: NavItem[] = useMemo(() => {
     const allItems = [

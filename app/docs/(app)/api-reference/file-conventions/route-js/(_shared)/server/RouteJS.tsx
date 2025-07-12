@@ -1,5 +1,7 @@
 import LivePriceDataPage from "./LivePriceData";
 import StyledAuthSimulation from "../client/AuthSimulation";
+// If you still get "Cannot find name 'div'", uncomment the next line:
+// import React from "react";
 
 export function RouteJSPage() {
   return (
